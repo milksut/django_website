@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+ {% extends "style_sheet.html" %}
+ {% block styled %}
+<body>
+    <header>
+        <h1>
+        <a href="{% url 'homepage' %}">Home</a> |
+        <a href="{% url 'secondary' %}">Secondary</a>
+        </h1>
+    </header>
+ {% block content %}{% endblock content %}
+</body>
+ {% endblock styled %}
+</html>
