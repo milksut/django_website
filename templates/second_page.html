@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>yooooooooooooooooooooooooooo</h1>
+<ul>
+    {% for post in post_list %}
+    <li>{{ post.text }}</li>
+    {% endfor %}
+</ul>
 </body>
 {% endblock content %}
 </html>
