@@ -14,13 +14,20 @@
         <li><a href="{% url 'bahisler' %}">Popüler Bahisler</a></li>
         <li><a href="#">Oyunlar</a></li>
         <li><a href="{% url 'koclar' %}">Koçlar</a></li>
-        <li style="float: right;"><a href="#">Uye Ol</a></li>
+        <li style="float: right;"><a onclick="toggleRegisterForm()">Üye ol</a></li>
         <li style="float: right;"><a href="#">Giris Yap</a></li>
         
     </ul>
     </div>
     </header>
-    
+    {% include 'register_form.html' %}
+    <script>
+       function toggleRegisterForm()
+       {
+            var registerForm = document.getElementById('register-form');
+            registerForm.style.display = registerForm.style.display == 'flex' ? 'none': 'flex';
+       }
+    </script>
  {% block content %}{% endblock content %}
 </body>
  {% endblock styled %}
