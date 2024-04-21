@@ -7,6 +7,6 @@ class HomePageView(TemplateView):
     template_name = "homepage.html"
 
 
-class SecondPageView(ListView):
-    model = Post
-    template_name = "second_page.html"
+#class SecondPageView(ListView):
+#   model = Post
+#   template_name = "second_page.html"

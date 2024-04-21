@@ -3,39 +3,21 @@
  {% extends "style_sheet.html" %}
  {% block styled %}
  
-<style>
-.menu-bar{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    border: 4px;
-    
-}
-
-
-</style>
- 
 <body>
+
     <header>
-      <!-- <h1>
-        <a href="{% url 'homepage' %}">Home</a> |
-        <a href="{% url 'secondary' %}">Secondary</a>
-        </h1>  -->  
-
-<div class="menu-bar">
-<ul>
-    <li><a href="#"></a>Ana Sayfa</li>
-    <li><a href="bahisler.html"></a>Popüler Bahisler</li>
-    <li><a href="koclar.html"></a>Oyunlar</li>
-    <li><a href="koclar.html"></a>Koçlar</li>
-    <li><a href="#"></a>Giris Yap</li>
-    <li><a href="#"></a>Uye Ol</li>
-</ul>
-
-
-</div>
-
+    <div class="menu-bar">
+    <ul>
+        <li><a href="#"></a>Ana Sayfa</li>
+        <li><a href="bahisler.html"></a>Popüler Bahisler</li>
+        <li><a href="koclar.html"></a>Oyunlar</li>
+        <li><a href="koclar.html"></a>Koçlar</li>
+        <li><a href="#"></a>Giris Yap</li>
+        <li><a href="#"></a>Uye Ol</li>
+    </ul>
+    </div>
     </header>
+    
  {% block content %}{% endblock content %}
 </body>
  {% endblock styled %}
