@@ -6,14 +6,15 @@
 <body>
 
     <header>
-    <div class="menu-bar">
-    <ul>
-        <li><a href="#"></a>Ana Sayfa</li>
-        <li><a href="bahisler.html"></a>Popüler Bahisler</li>
-        <li><a href="koclar.html"></a>Oyunlar</li>
-        <li><a href="koclar.html"></a>Koçlar</li>
-        <li><a href="#"></a>Giris Yap</li>
-        <li><a href="#"></a>Uye Ol</li>
+    <div class="menu-container">
+    <ul class="navbar">
+        <li><a href="{% url 'homepage' %}">Ana Sayfa</a></li>
+        <li><a href="#">Popüler Bahisler</a></li>
+        <li><a href="#">Oyunlar</a></li>
+        <li><a href="#">Koçlar</a></li>
+        <li style="float: right;"><a href="#">Uye Ol</a></li>
+        <li style="float: right;"><a href="#">Giris Yap</a></li>
+        
     </ul>
     </div>
     </header>
