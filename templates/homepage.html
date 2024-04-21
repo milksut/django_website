@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends "header.html" %}
+{% load static %}
 {% block content %}
 <head>
     
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DecoyBet</title>
 </head>
 <body>
-    
+    <div class="Hompage-container">
+        <div class="advertisement">
+            <!-- Reklam -->
+            <img src="../static/pictures/sol_resim.jpg" alt="Sol Reklam">
+        </div>
+        <div class="content">
+            <!--İçerik-->
+            <h1>DecoyBet'e Hoş Geldiniz!</h1>
+        </div>
+        <div class="advertisement">
+            <!--Reklam-->
+            <img src="../static/pictures/sag_resim.jpg" alt="Sağ Reklam">
+        </div>
+    </div>
 </body>
 {% endblock content %}
 </html>
