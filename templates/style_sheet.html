@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <style>
+        :root{
+            --main-orange: rgb(255, 165, 0);
+            --second-orange: rgb(235, 210, 164);
+            --main-gray: rgb(46, 46, 46);
+        }
         body{
     background-color: rgb(35, 41, 57);
 }
@@ -36,6 +41,32 @@
 {
     background-color: rgb(220,53,124);
 }
+/*tablo için css*/
+table{
+    border-spacing: 0;
+}
+th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table-mainrow{
+        background-color: var(--main-gray);
+        color: white;
+    }
+    .table-secondrow{
+        background-color: var(--main-orange);
+    }
+    .mac-row{
+        background-color: var(--second-orange);
+    }
+    table button{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    
     </style>
 </head>
 <body>
