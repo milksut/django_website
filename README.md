@@ -1,6 +1,6 @@
 after cloned the project
 open terminal in the project files
--py -m venv venv
+py -m venv venv
 after it created the venv, open the venv file and add a gitignore file so git dosent track it
 start the venv by venv\Scripts\Activate
 then install django 4.0.0 by pip install django~=4.0.0
