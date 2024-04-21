@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  {% extends "style_sheet.html" %}
+ {% load static %}
  {% block styled %}
  
 <body>
@@ -8,6 +9,7 @@
     <header>
     <div class="menu-container">
     <ul class="navbar">
+        <li><img src="{% static 'pictures/Decoy.png' %}" alt="logo" style="height: 100%"></li>
         <li><a href="{% url 'homepage' %}">Ana Sayfa</a></li>
         <li><a href="{% url 'bahisler' %}">Popüler Bahisler</a></li>
         <li><a href="#">Oyunlar</a></li>
