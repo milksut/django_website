@@ -3,12 +3,13 @@
 <head>
     <style>
         :root{
+            --main-bgcolor: rgb(35, 41, 57);
             --main-orange: rgb(255, 165, 0);
             --second-orange: rgb(235, 210, 164);
             --main-gray: rgb(46, 46, 46);
         }
         body{
-    background-color: rgb(35, 41, 57);
+    background-color: var(--main-bgcolor);
 }
 
 .menu-container{
@@ -53,7 +54,7 @@ th, td {
 
     .table-mainrow{
         background-color: var(--main-gray);
-        color: white;
+        color: var(--second-orange);
     }
     .table-secondrow{
         background-color: var(--main-orange);
