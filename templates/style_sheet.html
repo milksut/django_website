@@ -49,6 +49,7 @@
             padding: 0px;
             background-color: rgb(35, 41, 57);
         }
+
  .advertisement {
             background-color: rgb(35, 41, 57);
             margin-top: 5px;
@@ -56,6 +57,54 @@
             height: 600px;
             padding: 0px;
         }
+.slider{
+    position: relative;
+    width: 250px;
+    height: 600px;
+    overflow: hidden;
+}
+.slider-content{
+    position:absolute;
+    width: 500%;
+    float: left;
+    animation: slide 10s infinite; 
+}
+.slider-item{
+    width: 20%;
+    float: left;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(0px);
+    }
+    10%{
+        transform: translateX(-250px);
+    }
+    20%{
+        transform: translateX(-250px);
+    }
+    30%{
+        transform: translateX(-500px);
+    }
+    40%{
+        transform: translateX(-500x);
+    }
+    50%{
+        transform: translateX(-750px);
+    }
+    60%{
+        transform: translateX(-750px);
+    }
+    70%{
+        transform: translateX(-1000px);
+    }
+    80%{
+        transform: translateX(-1000x);
+    }
+    90%{
+        transform: translateX(0px);
+    }
+}
 .navbar li a:hover
 {
     background-color: rgb(220,53,124);
