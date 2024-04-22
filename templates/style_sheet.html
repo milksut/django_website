@@ -19,6 +19,7 @@
     background-color: rgb(245,73,144);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px,
         rgba(245, 73, 144, 0.5) 5px 10px 15px;
+    height: 50px;
 }
 .navbar
 {
@@ -26,10 +27,12 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    height: inherit;
 }
 .navbar li
 {
     float: left;
+    height: 100%;
 }
 .navbar li a
 {
@@ -38,6 +41,27 @@
     padding: 14px 16px;
     text-decoration:double;
 }
+
+.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px;
+            
+        }
+.advertisement img{
+            width: 250px;
+            height: 600px;
+            padding: 0px;
+            background-color: rgb(35, 41, 57);
+        }
+ .advertisement {
+            background-color: rgb(35, 41, 57);
+            margin-top: 5px;
+            width: 250px;
+            height: 600px;
+            padding: 0px;
+        }
 .navbar li a:hover
 {
     background-color: rgb(220,53,124);
