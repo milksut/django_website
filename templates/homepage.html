@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 {% extends "header.html" %}
+{% load static %}
 {% load static %}
 {% block content %}
 <head>
@@ -10,12 +10,10 @@
     <title>DecoyBet</title>
 </head>
 <body>
-    
-    
-    <div class="container">
+    <div class="Hompage-container">
         <div class="advertisement">
             <!-- Reklam -->
-            <img src="{% static 'pictures/sol_resim.jpg' %}" alt="Sol Reklam">
+            <img src="../static/pictures/sol_resim.jpg" alt="Sol Reklam">
         </div>
         <div class="content">
             <table>
@@ -94,7 +92,7 @@
         </div>
         <div class="advertisement">
             <!--Reklam-->
-            <img src="{% static 'pictures/sag_resim.jpg' %}" alt="Sağ Reklam">
+            <img src="../static/pictures/sag_resim.jpg" alt="Sağ Reklam">
         </div>
     </div>
 </body>
