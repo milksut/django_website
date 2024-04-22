@@ -5,3 +5,10 @@ from .models import Post
 
 class HomePageView(TemplateView):
     template_name = "homepage.html"
+
+class BahislerPageView(TemplateView):
+    template_name = "bahisler.html"
+
+class KoclarPageView(TemplateView):
+    template_name = "koclar.html"
+

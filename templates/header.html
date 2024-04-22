@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  {% extends "style_sheet.html" %}
+ {% load static %}
  {% block styled %}
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
  
@@ -10,20 +11,25 @@
     <div class="menu-container">
     <ul class="navbar">
         <li class="decoy-bet"><span>DECOY</span> BET</li>
+        <li><img src="{% static 'pictures/Decoy.png' %}" alt="logo" style="height: 100%"></li>
         <li><a href="{% url 'homepage' %}"><i class="fa-solid fa-house"></i>Ana Sayfa</a></li>
-        <li style="margin: 12px;"><a href="#">Popüler Bahisler</a></li>
+        <li style="margin: 12px;"><a href="{% url 'bahisler' %}">Popüler Bahisler</a></li>
         <li><a href="#">Oyunlar</a></li>
-        <li><a href="#">Koçlar</a></li>
-        <div class="login-signup">
-            <li style="float: right;" ><a href="#">Uye Ol</a></li>
-            <li style="float: right;"><a href="#">Giris Yap</a></li>
-        </div>
-       
+        <li><a href="{% url 'koclar' %}">Koçlar</a></li>
+        <li style="float: right;"><a onclick="toggleRegisterForm()">Üye ol</a></li>
+        <li style="float: right;"><a href="#">Giris Yap</a></li>
         
     </ul>
     </div>
     </header>
-    
+    {% include 'register_form.html' %}
+    <script>
+       function toggleRegisterForm()
+       {
+            var registerForm = document.getElementById('register-form');
+            registerForm.style.display = registerForm.style.display == 'flex' ? 'none': 'flex';
+       }
+    </script>
  {% block content %}{% endblock content %}
 </body>
  {% endblock styled %}
