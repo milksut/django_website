@@ -195,6 +195,39 @@ border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
 }
+
+.container-games{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.container-games .game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 250px;
+    width: 200px;
+    background-color: rgb(45, 51, 67);
+    border: 2px solid rgb(190, 179, 179);
+    border-radius: 10px;
+    color: rgb(190, 179, 179);
+    cursor: pointer;
+    transition: 0.4s;
+    margin: 10px;
+    padding: 20px;
+}
+
+.container-games .game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
     </style>
 </head>
 <body>
