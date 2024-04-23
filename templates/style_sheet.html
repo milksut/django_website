@@ -2,35 +2,34 @@
 <html lang="en">
 <head>
     <style>
-        body{
-    background-color: rgb(35, 41, 57);
+html {
+    scroll-behavior: smooth;
 }
-
-
-
-
+:root
+{
+    --main-bgcolor: rgb(35, 41, 57);
+    --main-orange: rgb(255, 165, 0);
+    --second-orange: rgb(235, 210, 164);
+    --main-gray: rgb(46, 46, 46);
+    --coach-white: rgb(244, 244, 244);
+    --coach-green: rgb(58, 193, 71);
+}
+body
+{
+    background-color: var(--main-bgcolor);
+}
 .imga {
     object-fit:cover;
-
-  
     display: flex;
-
     align-items:right;
     justify-content: row;
-
     overflow: hidden;
-
     float: left;
-
-
     width: 100%;
     height: 100%;
     border: 2px solid rgb(190, 179, 179);
     border-radius: 10px;
 }
-
-
-
 .aa{
     object-fit:cover;
     width: 100%;
@@ -66,7 +65,6 @@
     margin-left: 17px;
     
 }
-
 .navbar li:not(:last-child)::after {
         content: "|"; /* Ayırıcı olarak kullanılacak içerik (örneğin: çarpraz çizgi) */
         position: absolute;
@@ -88,18 +86,13 @@
     font-size: larger;
     
 }
-
 .container {
             display: flex;
             justify-content: space-between;
-            align-items:right;
             padding-top: 10px;
-            overflow: hidden;
-            max-width: 100vw;
-
+            max-width: 100vw; 
             .content
             {
-                float: left;
                 width: 100%;
                 max-width: 55vw;
                 overflow:hidden;
@@ -107,31 +100,31 @@
                 justify-content: center;
                 align-items: center;
                 flex-wrap: wrap;
-                flex-direction: column;
+                flex-direction: column; 
             }
 }
 
-
- .advertisement {
-            position: sticky;
-            margin-top: 5px;
-            top: 30px;
-            background-color: rgb(35, 41, 57);
-            width: 20vw;
-            height: 90vh;
-            padding: 0px;
-            border-radius: 10px;
-            .left{
-                top:30px;
-                left: 0vw;
-                border-radius: inherit;
-                box-shadow: 10px 20px 13px 2px rgb(15, 20, 35);}
-            .right{
-                left:80vw;
-                top:30px;
-                border-radius: inherit;
-                box-shadow: -10px 20px 13px 2px rgb(15, 20, 35);}
-        }
+.advertisement 
+{
+    position: sticky;
+    margin-top: 5px;
+    top: 30px;
+    background-color: rgb(35, 41, 57);
+    width: 20vw;
+    height: 90vh;
+    padding: 0px;
+    border-radius: 10px;
+    .left{
+        top:30px;
+        left: 0vw;
+        border-radius: inherit;
+        box-shadow: 10px 20px 13px 2px rgb(15, 20, 35);}
+    .right{
+        left:80vw;
+        top:30px;
+        border-radius: inherit;
+        box-shadow: -10px 20px 13px 2px rgb(15, 20, 35);}
+}
 .slider{
     position: relative;
     width: 20vw;
@@ -190,24 +183,6 @@
     background-color: rgb(220,53,124);
     border-radius: 10px;
 }   
-
-
-.login-signup{
-
-/* login ve sign up'ın çevresine çerçeve eklenecek. */
-border: 2px;
-border-radius: 10px;
-}
-
-.decoy-bet {
-            padding: 14px 16px;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-
 #register-form 
 {
     display: none;
@@ -222,63 +197,41 @@ border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
 }
-
 .container-games{
     display: flex;
-    width: 55%;
+    width: 100%;
     justify-content: space-between;
     padding: 10px;
     margin-top: 40px;
     flex-wrap: wrap;
-    position: absolute;
-
     padding-top: 2%;
     margin-top: 30%;
     object-fit: cover;
-
-
-   
-    
-    
-
 }
 
 
 .container-games .game{
-    
-    
     object-fit:cover;
-
-  
     display: flex;
     margin-top: 2%;
     align-items:right;
     justify-content: row;
     flex-direction: row;
     overflow: hidden;
-    
     float: left;
-    
-
     height:150px;
     width: 150px;
-
-    background-color: rgb(45, 51, 67);
-    
+    background-color: rgb(45, 51, 67);  
     border-radius: 10px;
     color: rgb(190, 179, 179);
     cursor: pointer;
     transition: 0.4s;
-    padding: 1%;
-   
-    
-    
+    padding: 1%; 
 }
 
 .container-games .game :hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
     filter: blur(2px);
 }
 
@@ -310,90 +263,90 @@ th, td {
         cursor: pointer;
     }
 }
-    /*koclar için css*/
-        .coach-list li
-        {
-            list-style: none;
-        }
-        .coach-list li:first-child
-        {
-            margin-top: 1rem;
-        }
+/*koclar için css*/
+.coach-list li
+{
+    list-style: none;
+}
+.coach-list li:first-child
+{
+    margin-top: 1rem;
+}
 
-        .coach {
-            border: 1px solid black;
-            height: 8rem; 
-            display: flex;
-            background-color: var(--coach-white);
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-        }
+.coach {
+    border: 1px solid black;
+    height: 8rem; 
+    display: flex;
+    background-color: var(--coach-white);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+}
 
-        .coach div {
-            display: inline-block;
-            height: 100%;
-        }
+.coach div {
+    display: inline-block;
+    height: 100%;
+}
 
-        .coach-img {
-            width: 8rem;
-            background-color: var(--coach-green);
-            height: 100%;
-            clip-path: polygon(0% 0%, 70% 0%, 100% 100%, 0% 100%);
-            position: relative;
-            z-index: 1;
-            border-radius: 8px 0px 0px 8px;
-            margin-right: 1.5rem;
-        }
-        .coach-name {
-            display: inline-block;
-            align-items: center;
-        }
-        
-        .coach-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            z-index: 999;
-            margin: 0px;
-            padding: 0px;
-            border-radius: 8px;
+.coach-img {
+    width: 8rem;
+    background-color: var(--coach-green);
+    height: 100%;
+    clip-path: polygon(0% 0%, 70% 0%, 100% 100%, 0% 100%);
+    position: relative;
+    z-index: 1;
+    border-radius: 8px 0px 0px 8px;
+    margin-right: 1.5rem;
+}
+.coach-name {
+    display: inline-block;
+    align-items: center;
+}
 
-        }
-        .coach-contact{
-            margin-left: 10rem;
-        }
-        .coach-contact button{
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
+.coach-img img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 8px;
+}
+.coach-contact{
+    margin-left: 10rem;
+}
+.coach-contact button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 
-        /*bahisler için css*/
-        .bahisler{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            padding-top: 8rem;
-        }
-        .mac-info{
-            background-color: var(--main-gray);
-            color: var(--second-orange);
-        }
-        .mac-no{
-            width: 2.5rem;
-        }
-        .mac-isim{
-            width: 10rem;
-        }
-        .maclar{
-            background-color: var(--second-orange);
-        }
-    
+/*bahisler için css*/
+.bahisler{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 8rem;
+}
+.mac-info{
+    background-color: var(--main-gray);
+    color: var(--second-orange);
+}
+.mac-no{
+    width: 2.5rem;
+}
+.mac-isim{
+    width: 10rem;
+}
+.maclar{
+    background-color: var(--second-orange);
+}
+
 #login-form 
 {
     display: none;
