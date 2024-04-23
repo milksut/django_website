@@ -34,9 +34,13 @@
 .navbar li
 {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: left;
+    height: 100%;
     width: 150px;
-    margin: 17px;
+    margin-left: 17px;
     
 }
 
@@ -61,27 +65,105 @@
     font-size: larger;
     
 }
-.Hompage-container
-{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px;
-}
-.advertisement
-{
-    margin-top: 5px;
-    width: 20%;
+
+.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            
+        }
+
+
+ .advertisement {
+            background-color: rgb(35, 41, 57);
+            margin-top: 5px;
+            width: 20vw;
+            height: 90vh;
+            padding: 0px;
+            border-radius: 10px;
+            .left{
+                border-radius: inherit;
+                box-shadow: 10px 20px 13px 2px rgb(15, 20, 35);}
+            .right{
+                border-radius: inherit;
+                box-shadow: -10px 20px 13px 2px rgb(15, 20, 35);}
+        }
+.slider{
+    position: relative;
+    width: 20vw;
     height: 90vh;
-    padding: 0px;
-    position: sticky;
+    overflow: hidden;
+    border-radius: inherit;
+    box-shadow: inherit;
 }
-.advertisement img
-{
+.slider-content{
+    position:absolute;
     height: 100%;
+    width: 800%;
+    float: left;
+    animation: slide 50s infinite; 
+}
+.slider-item{
+    width: 12.5%;
+    height: 100%;
+    float: left;
+}
+.slider-item img
+{
     width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(0vw);
+    }
+    6.25%{
+        transform: translateX(0vw);
+    }
+    10%{
+        transform: translateX(-20vw);
+    }
+    18.75%{
+        transform: translateX(-20vw);
+    }
+    22.5%{
+        transform: translateX(-40vw);
+    }
+    31.25%{
+        transform: translateX(-40vw);
+    }
+    35%{
+        transform: translateX(-60vw);
+    }
+    43.75%{
+        transform: translateX(-60vw);
+    }
+    48.5%{
+        transform: translateX(-80vw);
+    }
+    56.25%{
+        transform: translateX(-80vw);
+    }
+    60%{
+        transform: translateX(-100vw);
+    }
+    68.75%{
+        transform: translateX(-100vw);
+    }
+    72.5%{
+        transform: translateX(-120vw);
+    }
+    81.25%{
+        transform: translateX(-120vw);
+    }
+    85%{
+        transform: translateX(-140vw);
+    }
+    93.75%{
+        transform: translateX(-140vw);
+    }
 }
 .navbar li a:hover
 {
