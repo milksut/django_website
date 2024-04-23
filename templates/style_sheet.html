@@ -76,6 +76,9 @@
                 width: 100%;
                 max-width: 55vw;
                 overflow:hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -191,9 +194,9 @@ border-radius: 10px;
     overflow: auto;
 }
 /*popüler bahis tablosu için css*/
-table{
+.bahis-table{
     border-spacing: 0;
-}
+
 th, td {
         border: 1px solid black;
         padding: 8px;
@@ -210,12 +213,12 @@ th, td {
     .mac-row{
         background-color: var(--second-orange);
     }
-    table button{
+    button{
         background: none;
         border: none;
         cursor: pointer;
     }
-
+}
     /*koclar için css*/
         .coach-list li
         {
