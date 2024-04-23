@@ -252,6 +252,7 @@ border-radius: 10px;
 
 .container-games .game{
     
+    
   
     margin-top: 2%;
     align-items:right;
@@ -275,9 +276,11 @@ border-radius: 10px;
     
 }
 
-.container-games .game:hover {
+.container-games .game :not(:hover) {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    filter: blur(2px);
 }
 
 
