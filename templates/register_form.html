@@ -1,11 +1,44 @@
+{% load static %}
+
 <div id="register-form">
-    <button style="color: aqua; background-color: black;" onclick="toggleRegisterForm()">&times;</button>
-    <h2>Kayıt Ol!</h2>
-    <form>
-        <input type="text" name="Kullanıcı adı" placeholder="Kullanıcı adı" required>
-        <input type="text" name="İsim-soyisim" placeholder="İsim-soyisim" required>
-        <input type="text" name="Email" placeholder="Email" required>
-        <input type="password" name="şifre" placeholder="şifre" required>
-        <button type="submit">Kaydol!</button>
+
+    <div class="sign_image">
+    <img style="width: 370px; height: 560px; border-radius: 0.75rem;" src="{% static 'pictures/gamble17.jpeg' %}" alt="">
+    <form class="form">
+        <p class="title">DecoyBet.com </p>
+       
+        <p class="message">Şimdi kaydolun ve 2.0000 betcoine varan spin şansını kaçırmayın. </p>
+            <div class="flex">
+            <label>
+                <input class="input" type="text" placeholder="" required="">
+                <span>İsim</span>
+            </label>
+    
+            <label>
+                <input class="input" type="text" placeholder="" required="">
+                <span>Soyisim</span>
+            </label>
+        </div>  
+                
+        <label>
+            <input class="input" type="email" placeholder="" required="">
+            <span>Email</span>
+        </label> 
+            
+        <label>
+            <input class="input" type="password" placeholder="" required="">
+            <span>Parola</span>
+        </label>
+        <label>
+            <input class="input" type="password" placeholder="" required="">
+            <span>Parola Doğrulama</span>
+        </label>
+        <button class="submit">Onayla</button>
+        <p class="signin">Zaten bir hesabın var mı? <a href="#">Giris yap</a> </p>
+        <button class="close-btn" style="color: aqua; background-color: black;" onclick="toggleRegisterForm()">&times;</button>
     </form>
+</div>
+
+
+</div>
 </div>
