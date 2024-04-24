@@ -14,3 +14,6 @@ class KoclarPageView(TemplateView):
 
 class ReklamPageView(TemplateView):
     template_name = "the_big_add.html"
+
+class IletisimPageView(TemplateView):
+    template_name = "iletisim.html"

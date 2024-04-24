@@ -4,7 +4,10 @@
  {% load static %}
  {% block styled %}
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
- 
+ <head>
+     <meta charset="UTF-8">
+    <title>DecoyBet</title>
+ </head>
 <body>
     <header>
     <div class="menu-container">
@@ -17,6 +20,7 @@
         <li><a href="{% url 'koclar' %}">Koçlar</a></li>
         <li style="float: right;"><a onclick="toggleRegisterForm()">Üye ol</a></li>
         <li style="float: right;"><a onclick="toggleLoginForm()">Giris Yap</a></li>
+        <li style="float: right;"><a href="{% url 'iletisim' %}">İletişim</a></li>
         <li style="float: right;"><a onclick="toggleMusic()">&#9834;</a></li>
         <!--li style="float: right;">BAKİYE TEMP</li-->
     </ul>
