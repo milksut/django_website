@@ -446,6 +446,7 @@ th, td {
 }
 #kupon-form 
 {
+  border-radius: 5%;
     display: none;
     overflow: visible;
     position: fixed;
@@ -454,11 +455,18 @@ th, td {
     bottom: 0vh;
     width: 15vw;
     height: 50vh;
-    background-color: white;
+    background-color: rgb(251, 249, 249);
     align-items: center;
     justify-content: center;
-    overflow: auto;
-   
+    overflow: auto; 
+}
+#kupon-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#kupon-toggle{
+  border-radius: 20%;
 }
         /*bahisler için css*/
         .bahisler{
