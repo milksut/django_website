@@ -12,3 +12,5 @@ class BahislerPageView(TemplateView):
 class KoclarPageView(TemplateView):
     template_name = "koclar.html"
 
+class ReklamPageView(TemplateView):
+    template_name = "the_big_add.html"
