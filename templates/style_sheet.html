@@ -8,7 +8,8 @@ html {
 :root
 {
     --main-bgcolor: rgb(35, 41, 57);
-    --main-orange: rgb(255, 165, 0);
+   /* --main-orange: rgb(255, 165, 0);*/
+   --main-orange: rgb(255, 165, 0);
     --second-orange: rgb(235, 210, 164);
     --main-gray: rgb(46, 46, 46);
     --coach-white: rgb(244, 244, 244);
@@ -258,15 +259,30 @@ body
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
 }
+
+/* buradan asagisi oyunlar.html'dir-------------------*/
+/*----------------------------------------------------*/
+/*----------------------------------------------------*/
+
+.oyunlar-baslik{
+
+color: rgb(197, 141, 150);
+font-family:Arial, Helvetica, sans-serif;
+font-size: 25px;
+text-decoration-line: underline;
+text-decoration-color: rgb(225, 111, 130);
+width: 100%;
+float: left;
+
+}
+
 .container-games{
     display: flex;
     width: 100%;
     justify-content: space-between;
     padding: 10px;
-    margin-top: 40px;
     flex-wrap: wrap;
     padding-top: 2%;
-    margin-top: 30%;
     object-fit: cover;
 }
 
@@ -322,6 +338,12 @@ th, td {
         background: none;
         border: none;
         cursor: pointer;
+    }
+
+    .table-baslik{
+      border: 3px solid whitesmoke;
+      border-radius: 10px;
+      background-color:wheat;
     }
 }
 /*koclar için css*/
@@ -463,7 +485,9 @@ th, td {
     
 
 
-
+/*-----------------------buradan asagisi sign up card ------------------------------*/
+/*---------------------------------------------------------*/
+/*----------------------------------------------------------*/
 
 
 .form {
@@ -479,6 +503,7 @@ th, td {
   color: #fff;
   border: 1px solid #333;
 }
+
 
 
 .title {
@@ -614,6 +639,142 @@ th, td {
     border-radius: 15px;
     box-shadow: 3px 4px 12px 8px rgba(195, 191, 191, 0.1); /* Yatay, dikey, bulanıklık, renk */
 
+}
+
+/*buradan asagisi login card ------------------------------*/
+/*---------------------------------------------------------*/
+/*----------------------------------------------------------*/
+.form-container {
+  width: 320px;
+  
+  border-radius: 0.75rem;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 2rem;
+  color: rgba(243, 244, 246, 1);
+}
+
+.login_form2{
+
+border: 4px solid rgb(0, 0, 33);
+overflow: hidden;
+display: flex;
+align-items: center; /* Yüksekliği hizalamak için */
+border-radius: 10px;
+box-shadow: 3px 4px 12px 8px rgba(213, 208, 208, 0.1); /* Yatay, dikey, bulanıklık, renk */
+}
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.form1 {
+  margin-top: 1.5rem;
+}
+
+.input-group {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.input-group label {
+  display: block;
+  color: rgba(156, 163, 175, 1);
+  margin-bottom: 4px;
+}
+
+.input-group input {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(55, 65, 81, 1);
+  outline: 0;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 0.75rem 1rem;
+  color: rgba(243, 244, 246, 1);
+}
+
+.input-group input:focus {
+  border-color: rgba(167, 139, 250);
+}
+
+.forgot {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgba(156, 163, 175,1);
+  margin: 8px 0 14px 0;
+}
+
+.forgot a,.signup a {
+  color: rgba(243, 244, 246, 1);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot a:hover, .signup a:hover {
+  text-decoration: underline rgba(167, 139, 250, 1);
+}
+
+.sign {
+  display: block;
+  width: 100%;
+  background-color: rgba(167, 139, 250, 1);
+  padding: 0.75rem;
+  text-align: center;
+  color: rgba(17, 24, 39, 1);
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+}
+
+.social-message {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.line1 {
+  height: 1px;
+  flex: 1 1 0%;
+  background-color: rgba(55, 65, 81, 1);
+}
+
+.social-message .message1 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(156, 163, 175, 1);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons .icon {
+  border-radius: 0.125rem;
+  padding: 0.75rem;
+  border: none;
+  background-color: transparent;
+  margin-left: 8px;
+}
+
+.social-icons .icon svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  fill: #fff;
+}
+
+.signup1 {
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgba(156, 163, 175, 1);
 }
 
 
