@@ -417,11 +417,12 @@ th, td {
 /*-----------------------*/
 .bahisler{
     width: 80vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     text-align: center;
-    padding-top: 8rem;
+    overflow: auto; 
+    padding-top: 4rem;
     padding-left: 10vw;
     table
     {
@@ -462,7 +463,6 @@ th, td {
 }
 #kupon-form 
 {
-  border-radius: 5%;
     display: block;
     position: fixed;
     z-index: 1000;
@@ -472,6 +472,7 @@ th, td {
     transition: bottom 3s ease;
     .kupon
     {
+      border-top-right-radius: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -485,27 +486,14 @@ th, td {
     color: white;
     background-color: red;
     border: black;
-    border-radius: 4px;
     width: 8vw;
     height: 2vw;
    }
-/*bahisler için css*/
-.bahisler{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding-top: 8rem;
-    overflow: auto; 
-}
+
 #kupon-form form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#kupon-toggle{
-  border-radius: 20%;
 }
 .mac-info{
     background-color: var(--main-gray);
