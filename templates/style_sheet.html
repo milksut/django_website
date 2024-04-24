@@ -8,7 +8,8 @@ html {
 :root
 {
     --main-bgcolor: rgb(35, 41, 57);
-    --main-orange: rgb(255, 165, 0);
+   /* --main-orange: rgb(255, 165, 0);*/
+   --main-orange: rgb(255, 165, 0);
     --second-orange: rgb(235, 210, 164);
     --main-gray: rgb(46, 46, 46);
     --coach-white: rgb(244, 244, 244);
@@ -197,15 +198,30 @@ body
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
 }
+
+/* buradan asagisi oyunlar.html'dir-------------------*/
+/*----------------------------------------------------*/
+/*----------------------------------------------------*/
+
+.oyunlar-baslik{
+
+color: rgb(197, 141, 150);
+font-family:Arial, Helvetica, sans-serif;
+font-size: 25px;
+text-decoration-line: underline;
+text-decoration-color: rgb(225, 111, 130);
+width: 100%;
+float: left;
+
+}
+
 .container-games{
     display: flex;
     width: 100%;
     justify-content: space-between;
     padding: 10px;
-    margin-top: 40px;
     flex-wrap: wrap;
     padding-top: 2%;
-    margin-top: 30%;
     object-fit: cover;
 }
 
@@ -261,6 +277,12 @@ th, td {
         background: none;
         border: none;
         cursor: pointer;
+    }
+
+    .table-baslik{
+      border: 3px solid whitesmoke;
+      border-radius: 10px;
+      background-color:wheat;
     }
 }
 /*koclar için css*/
