@@ -35,6 +35,11 @@
             var loginForm = document.getElementById('login-form');
             loginForm.style.display = loginForm.style.display == 'flex' ? 'none': 'flex';
        }
+       function switchForm()
+       {
+          toggleLoginForm();
+          toggleRegisterForm();
+       }
        function goToGames()
        {
           if( window.location.pathname!=="/")
