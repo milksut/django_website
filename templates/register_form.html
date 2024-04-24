@@ -3,9 +3,9 @@
 <div id="register-form">
 
     <div class="sign_image">
-    <img style="width: 370px; height: 560px; border-radius: 0.75rem;" src="{% static 'pictures/gamble17.jpeg' %}" alt="">
+    <img style="width: 380px; height: 560px; border-radius: 0.75rem;" src="{% static 'pictures/gamble17.jpeg' %}" alt="">
     <form class="form">
-        <p class="title">DecoyBet.com </p>
+        <h2 class="title">DecoyBet.com </h2>
        
         <p class="message">Şimdi kaydolun ve 2.0000 betcoine varan spin şansını kaçırmayın. </p>
             <div class="flex">
@@ -34,7 +34,7 @@
             <span>Parola Doğrulama</span>
         </label>
         <button class="submit">Onayla</button>
-        <p class="signin">Zaten bir hesabın var mı? <a href="#">Giris yap</a> </p>
+        <p class="signin">Zaten bir hesabın var mı? <a onclick="switchForm()">Giris yap</a> </p>
         <button class="close-btn" style="color: aqua; background-color: black;" onclick="toggleRegisterForm()">&times;</button>
     </form>
 </div>

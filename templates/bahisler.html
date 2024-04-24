@@ -2,11 +2,43 @@
 <html lang="en">
 {% extends "header.html" %}
 {% block content %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>DecoyBet</title>
 </head>
 <body>
+<div class="advertisement1" onclick="window.location.href = '/gain_1M$.com';">
+    <div class="slider1">
+        <div class="slider-content1">
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f1.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f2.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f3.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f4.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f5.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f6.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f7.jpg' %}" alt="">
+            </div>
+            <div class="slider-item1">
+                <img src="{% static 'pictures/f8.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+        <h1 style="width: 100%; display: flex;margin-top: 5vh; justify-content: center; color: pink;">Haftanın Maçları</h1>
     <div class="bahisler">
         <table>
             <tr class="mac-info">
@@ -20,8 +52,32 @@
             <tr class="maclar">
                 <td>1</td>
                 <td>1</td>
-                <td>22.04.2024</td>
-                <td>Sivas - Fenerbahçe</td>
+                <td>26.04.2024</td>
+                <td>Adana Demirspor - Galatasaray</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>3.02</td>
+            </tr>
+            <tr class="maclar">
+                <td>2</td>
+                <td>1</td>
+                <td>27.04.2024</td>
+                <td>Sivas Spor - Konya Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.7</td>
+            </tr>
+            <tr class="maclar">
+                <td>3</td>
+                <td>1</td>
+                <td>27.04.2024</td>
+                <td>Hatay Spor - Başakşehir Spor</td>
                 <td>
                     <button>1</button>
                     <button>0</button>
@@ -29,8 +85,93 @@
                 </td>
                 <td>2.4</td>
             </tr>
+            <tr class="maclar">
+                <td>4</td>
+                <td>1</td>
+                <td>27.04.2024</td>
+                <td>Alanya Spor - İstanbul Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.5</td>
+            </tr>
+            <tr class="maclar">
+                <td>5</td>
+                <td>1</td>
+                <td>27.04.2024</td>
+                <td>Kasımpaşa - Samsun Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.23</td>
+            </tr>
+            <tr class="maclar">
+                <td>6</td>
+                <td>1</td>
+                <td>27.04.2024</td>
+                <td>Fenerbahçe SK - Beşiktas SK</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.56</td>
+            </tr>
+            <tr class="maclar">
+                <td>7</td>
+                <td>1</td>
+                <td>28.04.2024</td>
+                <td>Pendikspor - Kayseri Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.46</td>
+            </tr>
+            <tr class="maclar">
+                <td>8</td>
+                <td>1</td>
+                <td>28.04.2024</td>
+                <td>Rize Spor - Ankaragücü Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.80</td>
+            </tr>
+            <tr class="maclar">
+                <td>9</td>
+                <td>1</td>
+                <td>28.04.2024</td>
+                <td>Trabzon Spor - Karagümrük FK</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>1.51</td>
+            </tr>
+            <tr class="maclar">
+                <td>10</td>
+                <td>1</td>
+                <td>28.04.2024</td>
+                <td>Gaziantep FK - Antalya Spor</td>
+                <td>
+                    <button>1</button>
+                    <button>0</button>
+                    <button>2</button>
+                </td>
+                <td>2.02</td>
+            </tr>
         </table>
     </div>
 </body>
+{% include 'kupon_form.html' %}
 {% endblock content %}
 </html>
