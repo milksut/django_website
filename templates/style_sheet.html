@@ -9,9 +9,10 @@ html {
 {
     --main-bgcolor: rgb(35, 41, 57);
    /* --main-orange: rgb(255, 165, 0);*/
-   --main-orange: rgb(255, 165, 0);
-    --second-orange: rgb(235, 210, 164);
-    --main-gray: rgb(46, 46, 46);
+   --main-orange: rgb(3, 3, 52);
+    --second-orange: white;
+   /* --main-gray: rgb(46, 46, 46); */
+   --main-gray: rgb(39, 39, 39);
     --coach-white: rgb(244, 244, 244);
     --coach-green: rgb(58, 193, 71);
 }
@@ -317,6 +318,8 @@ float: left;
 /*popüler bahis tablosu için css*/
 .bahis-table{
     border-spacing: 0;
+    box-shadow: 0px 5px 3px 3px  rgb(76, 76, 108);
+    border-radius: 7px;
 
 th, td {
         border: 1px solid black;
@@ -343,7 +346,7 @@ th, td {
     .table-baslik{
       border: 3px solid whitesmoke;
       border-radius: 10px;
-      background-color:wheat;
+      background-color: rgb(240, 185, 149);
     }
 }
 /*koclar için css*/
@@ -408,13 +411,22 @@ th, td {
 }
 
 /*bahisler için css*/
+/*-----------------------*/
 .bahisler{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     text-align: center;
     padding-top: 8rem;
+    table
+    {
+      width: 100%;
+      height: 100%;
+    }
+    tr{
+      height: 8vh;
+    }
 }
 .mac-info{
     background-color: var(--main-gray);
@@ -469,14 +481,7 @@ th, td {
   border-radius: 20%;
 }
         /*bahisler için css*/
-        .bahisler{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            padding-top: 8rem;
-        }
+        
         .mac-info{
             background-color: var(--main-gray);
             color: var(--second-orange);
