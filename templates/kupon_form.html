@@ -1,0 +1,21 @@
+<button id="kupon-toggle"
+style="color: white; background-color: red; position: fixed; bottom: 0vh; left: 80vw;" 
+onclick="toggleKuponForm()">&#11165 Kuponum</button>
+<div id="kupon-form"> 
+    <form>
+        <input type="number" name="Tutar" placeholder="1.00" required>
+        <input type="number" name="Sistem" placeholder="1" required>
+        <input type="number" name="Sayi" placeholder="1" required>
+        <button type="submit">Kuponu Onayla!</button>
+    </form>
+</div>
+<script>
+    function toggleKuponForm()
+    {
+        var kuponForm = document.getElementById('kupon-form');
+            kuponForm.style.display = kuponForm.style.display == 'flex' ? 'none': 'flex';
+
+        var kuponToggle = document.getElementById('kupon-toggle');
+            kuponToggle.style.bottom = kuponToggle.style.bottom == '0vh' ? '50vh': '0vh';
+    }
+</script>
