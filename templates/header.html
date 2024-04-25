@@ -20,7 +20,7 @@
         <li><a href="{% url 'koclar' %}">Koçlar</a></li>
         <li style="float: right;"><a onclick="toggleRegisterForm()">Üye ol</a></li>
         <li style="float: right;"><a onclick="toggleLoginForm()">Giris Yap</a></li>
-        <li style="float: right;"><a href="{% url 'iletisim' %}">İletişim</a></li>
+        <li style="float: right;"><a href="{% url 'iletisim' %}">Hakkımızda</a></li>
         <li style="float: right;"><a onclick="toggleMusic()">&#9834;</a></li>
         <!--li style="float: right;">BAKİYE TEMP</li-->
     </ul>
@@ -69,7 +69,7 @@
           }
        }
     </script>
- {% block content %}{% endblock content %}
+ {% block content %}     {% endblock content %} {%include 'footer.html'%}        
 </body>
  {% endblock styled %}
 </html>
