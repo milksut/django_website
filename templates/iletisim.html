@@ -2,6 +2,7 @@
 <html lang="en">
 {%extends "header.html"%}
 {% block content%}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +12,21 @@
 
 
 <style>
+
+    .hresim{
+        
+    
+        top: 30%;
+        margin-top:8%;
+        height: 60vh;
+        overflow: hidden;
+        width: 40%;
+        border: 8px solid;
+      
+        border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
+        
+
+    }
     .hakkimizda {
 
         width: 50%;
@@ -33,6 +49,14 @@
 </style>
 
 <body>
+    <div class="hresim">
+        <img src="{% static 'pictures/k1.jpg' %}" alt="">
+
+
+
+
+
+    </div>
 
     <div class="hakkimizda">
 
