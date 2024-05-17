@@ -1,7 +1,21 @@
 # Create your views here.
-from django.views.generic import TemplateView, ListView
-from .models import Post
+from django.views.generic import TemplateView
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
+from django.http import HttpRequest
+from django.contrib.auth.hashers import make_password
 
+def LoginCall(request: HttpRequest):
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        kullanici = authenticate(request, username=username, password=password) 
+        print(username,password)
+        if kullanici is not None:
+            login(request, kullanici)
+        else:
+            return redirect('koclar')
+    return redirect('homepage')
 
 class HomePageView(TemplateView):
     template_name = "homepage.html"
