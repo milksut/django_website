@@ -1,6 +1,6 @@
 # Create your views here.
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login, get_user_model, password_validation
+from django.contrib.auth import authenticate, login, get_user_model, password_validation, hashers
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
@@ -29,18 +29,18 @@ def RegisterCall(request: HttpRequest):
         if User.objects.filter(username=username).exists():
             return JsonResponse({'success': False, 'error': 'Kullanıcı adı çoktan alınmış'})
         password=request.POST.get('password')
-        password2= request.POST.get('password2')
+        password2= request.POST.get('confirm-password')
         if password != password2:
             return JsonResponse({'success': False, 'error': 'Parolalar aynı değil'})
         try:
             password_validation.validate_password(password)
         except ValidationError as e:
-            error_messages = [tercuman(message) for message in e.messages]
+            error_messages = [tercuman(message) + '\n' for message in e.messages]
             return JsonResponse({'success': False, 'error': error_messages})
-        user = User.objects.create(username= username, password=password, first_name=request.POST.get('first_name'),
-            lasr_name=request.POST.get('last_name'), email=request.POST.get('email'))
+        user = User.objects.create(username= username, password=hashers.make_password(password), first_name=request.POST.get('first-name'),
+            last_name=request.POST.get('last-name'), email=request.POST.get('email'))
         login(request, user)
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True, 'redirect_url': ''})
 
 
 class HomePageView(TemplateView):

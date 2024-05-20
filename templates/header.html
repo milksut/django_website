@@ -96,7 +96,35 @@
              });
          });
      });
- </script>
+     </script>
+     <script>
+          $(document).ready(function(){
+              $('#register-form-form').on('submit', function(event){
+                  event.preventDefault();
+                  var $form = $(this);
+                  $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(), 
+                    success: function(response)
+                    {
+                         if (response.error) {
+                              $('#register-error-message').text(response.error).show();
+                         } 
+                         else 
+                         {
+                              window.location.href = response.redirect_url;
+                         }
+                    },
+                    error: function()
+                    {
+                         $('#register-error-message').text('An error occurred. Please try again.').show();
+                    }
+                  });
+              });
+          });
+      </script>
+
  {% block content %}  {% endblock content %}    
 </body>
  {% endblock styled %}

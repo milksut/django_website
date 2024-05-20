@@ -1,58 +1,14 @@
 {% load static %}
-<!--
-
-    <div id="register-form">
-
-    <div class="sign_image">
-    <img style="width: 380px; height: 560px; border-radius: 0.75rem;" src="{% static 'pictures/gamble17.jpeg' %}" alt="">
-    <form class="form">
-        <h2 class="title">DecoyBet.com </h2>
-       
-        <p class="message">Şimdi kaydolun ve 2.0000 betcoine varan spin şansını kaçırmayın. </p>
-            <div class="flex">
-            <label>
-                <input class="input" type="text" placeholder="" required="">
-                <span>İsim</span>
-            </label>
-    
-            <label>
-                <input class="input" type="text" placeholder="" required="">
-                <span>Soyisim</span>
-            </label>
-        </div>  
-                
-        <label>
-            <input class="input" type="email" placeholder="" required="">
-            <span>Email</span>
-        </label> 
-            
-        <label>
-            <input class="input" type="password" placeholder="" required="">
-            <span>Parola</span>
-        </label>
-        <label>
-            <input class="input" type="password" placeholder="" required="">
-            <span>Parola Doğrulama</span>
-        </label>
-        <button class="submit">Onayla</button>
-        <p class="signin">Zaten bir hesabın var mı? <a onclick="switchForm()">Giris yap</a> </p>
-        <button class="close-btn" style="color: aqua; background-color: black;" onclick="toggleRegisterForm()">&times;</button>
-    </form>
-</div>
-
-
-</div>
-</div>
--->
 <div id="register-form">
     <div class="sign_image">
         <img style="width: 380px; height: 693px; border-radius: 0.75rem;" src="{% static 'pictures/gamble17.jpeg' %}" alt="">
         <div class="form-container">
             <h1 class="title">DecoyBet.com &nbsp;&nbsp;<span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: azure;">kaydol</span></h1>
-            <form class="form1">
+            <form id="register-form-form" class="form1"  method="post" action="{% url 'registerCall' %}">
+                {% csrf_token %}
                 <div class="input-group">
-                    <label for="first-name">Kullanıcı Adı</label>
-                    <input type="text" name="first-name" id="first-name" placeholder="">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" name="username" id="username" placeholder="">
                 </div>
                 <div class="input-group">
                     <label for="first-name">İsim</label>
@@ -75,6 +31,7 @@
                     <input type="password" name="confirm-password" id="confirm-password" placeholder="">
                 </div>
                 <br><br>
+                <div id="register-error-message" style="color: red; display: none; font-size: large;"></div>
                 <button class="sign">Onayla</button>
             </form>
             <p class="signin">Zaten bir hesabın var mı? <a onclick="switchForm()">Giriş yap</a> </p>
