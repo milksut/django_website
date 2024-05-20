@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.translation import gettext_lazy as tercuman
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -104,13 +105,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
 USE_TZ = True
+
+# Override the default error messages
+PASSWORD_VALIDATION_MESSAGES = {
+    'password_too_short': tercuman('Parola en az 8 karakter olmalıdır.'),
+    'password_too_common': tercuman('Parola çok yaygın.'),
+    'password_entirely_numeric': tercuman('Parola tamamen sayılardan oluşamaz.'),
+}
 
 
 # Static files (CSS, JavaScript, Images)
@@ -123,3 +131,4 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'new_page.Kullanici'
