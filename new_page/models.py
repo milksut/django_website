@@ -14,10 +14,13 @@ class Match(models.Model):
     def __str__(self):
         return f"{self.team1} vs {self.team2} - {self.match_date}"
 
-
+class Coach(models.Model):
+ CoachLeague= models.CharField(("Koç Adı"), max_length=50)
 
 class Post(models.Model):
-    text = models.TextField()
+    text = models.TextField(("Yorum"), max_length=600)
+
 
     def __str__(self):  # new
         return self.text[:50]
+
