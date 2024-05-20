@@ -5,9 +5,9 @@
     <img style="width: 390px; height: 530px; border-radius: 0.75rem;" src="{% static 'pictures/gamble19.jpeg' %}" alt="">
     <div class="form-container">
         <h1 class="title">DECOY BET.com  &nbsp;&nbsp; <span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: azure;"> giriş yap</span></h1>
-        <form class="form1">
+        <form class="form1" method="post" action="{% url 'loginCall' %}" >{% csrf_token %}
             <div class="input-group">
-                <label for="username">İsim</label>
+                <label for="username">Kullanıcı adı</label>
                 <input type="text" name="username" id="username" placeholder="">
             </div>
             <div class="input-group">
