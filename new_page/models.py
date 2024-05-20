@@ -22,7 +22,13 @@ class Match(models.Model):
         return f"{self.team1} vs {self.team2} - {self.match_date}"
 
 class Coach(models.Model):
- CoachLeague= models.CharField(("Koç Adı"), max_length=50)
+    CoachLeague= models.CharField(("Lig Uzmanligi"), max_length=50)
+    Coachİmage = models.ImageField((""),upload_to="static/pictures")
+    Kullanici = models.OneToOneField(Kullanici, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.Kullanici.username} - {self.CoachLeague}"
+
 
 class Post(models.Model):
     text = models.TextField(("Yorum"), max_length=600)
