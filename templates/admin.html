@@ -6,12 +6,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .admin_html{
+            background-color: bisque;
+            height: 100%;
+        }
+        .admin_div{
+            margin-left: 12.5%;
+            width: 75%;
+            height: 33%;
+            background-color: aqua;
+            padding: 20px;
+            margin-top: 1rem;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        .bahis-table {
+            display: table; /* Tabloyu varsayılan olarak gizle */
+        }
+
+    </style>
 </head>
 <body>
-    
+    <div class="admin_html">
+        
+        <div class="admin_div maclar_input" id="tum_maclar">
+            <h2>Tüm Maçlar</h2>
+            <form class="admin_form" action="">
+                <input type="file">
+                <button id="import_tum">Import</button>
+                <button id="export_tum">Export</button>
+                <button id="show_all">Maçları Göster</button>
+                
+            </form>
+            {% include 'popular_bahisler.html' %}
+        </div>
+        <div class="admin_div koclar_yorum" id="tum_maclar">
+            <h2>Koçlar Yorum</h2>
+            <form class="admin_form" action="">
+                <input type="file">
+                <button id="import_tum">Import</button>
+                <button id="export_tum">Export</button>
+            </form>
+        </div>
+        
+    </div>
+    <script>
+        
+        
+        function toggleTableVisibility() {
+            var table = document.querySelector(".bahis-table");
+            // Tablonun mevcut görünürlük durumunu al
+            var currentDisplay = table.style.display;
+            // Eğer tablo şu anda görünürse, gizle; aksi takdirde göster
+            table.style.display = (currentDisplay === "table" || !currentDisplay) ? "none" : "table";
+        }
 
-
-    
+    </script>
 </body>
 </html>
