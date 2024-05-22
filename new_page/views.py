@@ -42,7 +42,7 @@ def RegisterCall(request: HttpRequest):
 
         try:
             password_validation.validate_password(password)
-
+            
             user = User.objects.create(username= username, password=hashers.make_password(password),
             first_name=request.POST.get('first-name'), last_name=request.POST.get('last-name'), email=request.POST.get('email'))
             login(request, user)

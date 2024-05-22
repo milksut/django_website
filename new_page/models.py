@@ -33,7 +33,7 @@ class Coach(models.Model):
 
 class Post(models.Model):
     text = models.TextField(("Yorum"), max_length=600)
-    Coach = models.ForeignKey(Coach, on_delete=models.CASCADE)
+    Coach = models.ForeignKey(Coach, on_delete=models.CASCADE, default=1)
     match_tag = models.ManyToManyField(Match)
     def __str__(self):
         return self.text[:50]
