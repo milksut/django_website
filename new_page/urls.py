@@ -9,4 +9,5 @@ urlpatterns = [
     path("iletisim.com", IletisimPageView.as_view(), name="iletisim"),
     path('login/', LoginCall, name='loginCall'),
     path('register/', RegisterCall, name='registerCall'),
+    
     ]

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model, password_va
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
+from django.shortcuts import render
 
 User = get_user_model()
 
