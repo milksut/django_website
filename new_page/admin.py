@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from .models import Post
+from .models import Kullanici, Kupon, Post,Match
 
-admin.site.register(Post)
+for model in [Kullanici, Kupon, Post, Match]:
+    admin.site.register(model)
