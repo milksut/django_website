@@ -18,13 +18,29 @@
         <li style="margin-bottom: 12px;"><a href="{% url 'bahisler' %}">Popüler Bahisler</a></li>
         <li><a onclick="goToGames()">Oyunlar</a></li>
         <li><a href="{% url 'koclar' %}">Koçlar</a></li>
-        <li style="float: right;"><a onclick="toggleRegisterForm()">Üye ol</a></li>
-        <li style="float: right;"><a onclick="toggleLoginForm()">Giris Yap</a></li>
-        <li style="float: right;"><a href="{% url 'iletisim' %}">Hakkımızda</a></li>
-        <li style="float: right;"><a onclick="toggleMusic()">&#9834;</a></li>
+
+        <li ><a href="{% url 'iletisim' %}">Hakkımızda</a></li>
+        <li ><a onclick="toggleMusic()">&#9834;</a></li>
+        <li style="float: left;"><a onclick="toggleRegisterForm()">Üye ol</a></li> 
+        <!-- <li style="float: right;"><a onclick="toggleLoginForm()">Giris Yap</a></li>  -->
+
+
         <!--li style="float: right;">BAKİYE TEMP</li-->
     </ul>
+
+   
     </div>
+    <div class="dropdown">
+     <button class="dropbtn">Seçiminizi Yapınız</button>
+     <div class="dropdown-content">
+       <a href="{% url 'koclar' %}">PROFİLİ GÖRÜNTÜLE</a>
+       <a href="{% url 'bahisler' %}">KOÇLAR</a>
+       <a href="{% url 'bahisler' %}">SATILIK KOPRU</a>
+     </div>
+     </div>
+</div>
+  
+
     </header>
     {% include 'login_form.html' %}
     {% include 'register_form.html' %}
