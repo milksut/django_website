@@ -17,6 +17,7 @@ class Kupon(models.Model):
 class Match(models.Model):
     team1 = models.CharField(max_length=100)
     team2 = models.CharField(max_length=100)
+    minumum_bet_amount = models.PositiveIntegerField(default =1)
     match_date = models.DateField()
     odds_team1 = models.FloatField()
     odds_draw = models.FloatField()

@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
 from django.shortcuts import render, redirect
-from new_page.models import Coach
+from new_page.models import Coach, Match
 
 User = get_user_model()
 
@@ -90,11 +90,13 @@ def LogoutCall(request):
 class HomePageView(TemplateView):
     template_name = "homepage.html"
 
-class BahislerPageView(TemplateView):
-    template_name = "bahisler.html"
+def BahislerPageCall(request):
+    matches = Match.objects.all()
+    return render(request, 'bahisler.html', {'matches': matches})
 
-class KoclarPageView(TemplateView):
-    template_name = "koclar.html"
+def KoclarPageCall(request):
+    coachs = Coach.objects.all()
+    return render(request, 'koclar.html', {'coachs': coachs})
 
 class ReklamPageView(TemplateView):
     template_name = "the_big_add.html"
