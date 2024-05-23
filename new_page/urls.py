@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BahislerPageView, KoclarPageView, ReklamPageView, IletisimPageView, LoginCall, RegisterCall
+from .views import HomePageView, BahislerPageView, KoclarPageView, ReklamPageView, IletisimPageView, LoginCall, RegisterCall,AdminPageView
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="homepage"),
@@ -9,4 +9,5 @@ urlpatterns = [
     path("iletisim.com", IletisimPageView.as_view(), name="iletisim"),
     path('login/', LoginCall, name='loginCall'),
     path('register/', RegisterCall, name='registerCall'),
+    path('yesss', AdminPageView.as_view(), name='yesss')
     ]
