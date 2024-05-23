@@ -1,6 +1,6 @@
 # Create your views here.
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login, get_user_model, password_validation, hashers
+from django.contrib.auth import authenticate, login, logout, get_user_model, password_validation, hashers
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
@@ -21,6 +21,9 @@ def LoginCall(request: HttpRequest):
             if kullanici.is_staff:
                 return JsonResponse({'success': True, 'redirect_url': '/moderator'})
 
+            elif kullanici.is_coach:
+                return JsonResponse({'success': True, 'redirect_url': '/post'})
+
             else:
                 return JsonResponse({'success': True, 'redirect_url': ''})
 
@@ -31,11 +34,11 @@ def LoginCall(request: HttpRequest):
 
 def RegisterCall(request: HttpRequest):
     if request.method == 'POST':
-        username=request.POST.get('username')
+        username=request.POST.get('ergister-username')
         if User.objects.filter(username=username).exists():
             return JsonResponse({'success': False, 'error': 'Kullanıcı adı çoktan alınmış'})
 
-        password=request.POST.get('password')
+        password=request.POST.get('register-password')
         password2= request.POST.get('confirm-password')
         if password != password2:
             return JsonResponse({'success': False, 'error': 'Parolalar aynı değil'})
@@ -69,18 +72,20 @@ def ModCall(request: HttpRequest):
 def CoachCall(request: HttpRequest):
     user = request.user
     if user.is_authenticated:
-        try:
-            coach_instance = Coach.objects.get(Kullanici=user)
-
+        if user.is_coach:
             return render(request, 'post.html', {'user': user})
 
-        except Coach.DoesNotExist:
+        else:
             messages.error(request, 'Sen Koç Değilsin!')
             return redirect('homepage')
             
     else:
             messages.error(request, 'Giriş yapmamışsın!')
             return redirect('homepage')
+
+def LogoutCall(request):
+    logout(request)
+    return redirect('homepage')
 
 class HomePageView(TemplateView):
     template_name = "homepage.html"

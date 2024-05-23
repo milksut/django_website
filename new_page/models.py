@@ -4,6 +4,10 @@ from django.contrib.auth.models import AbstractUser
 class Kullanici(AbstractUser):
     balance = models.FloatField(blank=True,null=False, default=0)
 
+    @property
+    def is_coach(self):
+        return hasattr(self, 'coach')
+
 class Kupon(models.Model):
     oran = models.FloatField()
     yatirialan = models.FloatField(default=1, null=False)

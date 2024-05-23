@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import HomePageView, BahislerPageView, KoclarPageView, ReklamPageView, IletisimPageView, LoginCall, RegisterCall, ModCall, CoachCall
+from .views import HomePageView, BahislerPageView, KoclarPageView, ReklamPageView
+from .views import IletisimPageView, LoginCall, RegisterCall, ModCall, CoachCall, LogoutCall
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="homepage"),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('register', RegisterCall, name='registerCall'),
     path('moderator', ModCall, name='modCall'),
     path('post', CoachCall, name='coachCall'),
+    path('logout', LogoutCall, name='logoutCall'),
     ]
