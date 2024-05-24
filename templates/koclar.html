@@ -11,12 +11,31 @@
 <body>
     <div>
         <ul class="coach-list">
+            {% for koc in Coachs%}
+            <li class="coach">
+                <div class="coach-img">
+                    <img src="{{ koc.Coachİmage.url }}" alt="">
+                </div>
+                <div class="coach-name">
+                    <h1>{{koc.Kullanici.first_name}} {{koc.Kullanici.last_name}}</h1>
+                    <span>
+                        {{ koc.CoachLeague }}
+                    </span>
+                    <span class="coach-contact">
+                        <label for="">İletişim:</label>
+                        <button type="button" onclick="location.href='https://mail.google.com/mail/?view=cm&fs=1&to={{koc.Kullanici.email}}'">
+                            <i class="fa-regular fa-envelope"></i>{{koc.Kullanici.email}}
+                        </button>
+                    </span>
+                </div>
+            </li>
+            {% endfor %}
             <li class="coach">
                 <div class="coach-img">
                     <img src="{% static 'pictures/melik.png' %}" alt="">
                 </div>
                 <div class="coach-name">
-                    <h1>Melik Yalçınkaya</h1>a
+                    <h1>Melik Yalçınkaya</h1>
                     <span>
                         laliga-süperlig-bundesliga
                     </span>

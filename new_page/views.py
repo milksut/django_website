@@ -95,8 +95,8 @@ def BahislerPageCall(request):
     return render(request, 'bahisler.html', {'matches': matches})
 
 def KoclarPageCall(request):
-    coachs = Coach.objects.all()
-    return render(request, 'koclar.html', {'coachs': coachs})
+    Coachs = Coach.objects.all()
+    return render(request, 'koclar.html', {'Coachs': Coachs})
 
 class ReklamPageView(TemplateView):
     template_name = "the_big_add.html"
