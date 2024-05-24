@@ -46,129 +46,21 @@
                 <td class="mac-bahis-sayisi">MBS</td>
                 <td class="mac-tarih">Tarih</td>
                 <td class="mac-isim">Maçlar</td>
-                <td  class="mac-tahmin">Tahmin</td>
-                <td class="mac-oran">Oran</td>
+                <td class="mac-oran">1</td>
+                <td class="mac-oran">0</td>
+                <td class="mac-oran">2</td>
             </tr>
-            <tr class="maclar">
-                <td>1</td>
-                <td>1</td>
-                <td>26.04.2024</td>
-                <td>Adana Demirspor - Galatasaray</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>3.02</td>
-            </tr>
-            <tr class="maclar">
-                <td>2</td>
-                <td>1</td>
-                <td>27.04.2024</td>
-                <td>Sivas Spor - Konya Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.7</td>
-            </tr>
-            <tr class="maclar">
-                <td>3</td>
-                <td>1</td>
-                <td>27.04.2024</td>
-                <td>Hatay Spor - Başakşehir Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>2.4</td>
-            </tr>
-            <tr class="maclar">
-                <td>4</td>
-                <td>1</td>
-                <td>27.04.2024</td>
-                <td>Alanya Spor - İstanbul Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.5</td>
-            </tr>
-            <tr class="maclar">
-                <td>5</td>
-                <td>1</td>
-                <td>27.04.2024</td>
-                <td>Kasımpaşa - Samsun Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.23</td>
-            </tr>
-            <tr class="maclar">
-                <td>6</td>
-                <td>1</td>
-                <td>27.04.2024</td>
-                <td>Fenerbahçe SK - Beşiktas SK</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.56</td>
-            </tr>
-            <tr class="maclar">
-                <td>7</td>
-                <td>1</td>
-                <td>28.04.2024</td>
-                <td>Pendikspor - Kayseri Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.46</td>
-            </tr>
-            <tr class="maclar">
-                <td>8</td>
-                <td>1</td>
-                <td>28.04.2024</td>
-                <td>Rize Spor - Ankaragücü Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.80</td>
-            </tr>
-            <tr class="maclar">
-                <td>9</td>
-                <td>1</td>
-                <td>28.04.2024</td>
-                <td>Trabzon Spor - Karagümrük FK</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>1.51</td>
-            </tr>
-            <tr class="maclar">
-                <td>10</td>
-                <td>1</td>
-                <td>28.04.2024</td>
-                <td>Gaziantep FK - Antalya Spor</td>
-                <td>
-                    <button>1</button>
-                    <button>0</button>
-                    <button>2</button>
-                </td>
-                <td>2.02</td>
-            </tr>
+            {% for mac in matches %}
+                <tr class="maclar">
+                    <td>{{ mac.id }}</td>
+                    <td>{{ mac.minumum_bet_amount }}</td>
+                    <td>{{ mac.match_date }}</td>
+                    <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
+                    <td onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}')"> {{ mac.odds_team1 }} </td>
+                    <td onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}')" > {{ mac.odds_draw }} </td>
+                    <td onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}')"> {{ mac.odds_team2 }} </td>       
+                </tr>
+            {% endfor %}
         </table>
     </div>
 </body>

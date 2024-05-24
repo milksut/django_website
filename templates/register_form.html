@@ -7,8 +7,8 @@
             <form id="register-form-form" class="form1"  method="post" action="{% url 'registerCall' %}">
                 {% csrf_token %}
                 <div class="input-group">
-                    <label for="username">Kullanıcı Adı</label>
-                    <input type="text" name="username" id="username" placeholder="">
+                    <label for="register-username">Kullanıcı Adı</label>
+                    <input type="text" name="register-username" id="register-username" placeholder="">
                 </div>
                 <div class="input-group">
                     <label for="first-name">İsim</label>
@@ -23,8 +23,8 @@
                     <input type="email" name="email" id="email" placeholder="">
                 </div>
                 <div class="input-group">
-                    <label for="password">Parola</label>
-                    <input type="password" name="password" id="password" placeholder="">
+                    <label for="register-password">Parola</label>
+                    <input type="password" name="register-password" id="register-password" placeholder="">
                 </div>
                 <div class="input-group">
                     <label for="confirm-password">Parola Doğrulama</label>
