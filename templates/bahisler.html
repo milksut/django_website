@@ -56,9 +56,9 @@
                     <td>{{ mac.minumum_bet_amount }}</td>
                     <td>{{ mac.match_date }}</td>
                     <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
-                    <td><button onclick="updateOran('{{ mac.odds_team1 }}', true)">{{ mac.odds_team1 }}</button> </td>
-                    <td><button onclick="updateOran('{{ mac.odds_draw }}', true)">{{ mac.odds_draw }}</button></td>
-                    <td><button onclick="updateOran('{{ mac.odds_team2 }}', true)">{{ mac.odds_team2 }}</button></td>       
+                    <td onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}')"> {{ mac.odds_team1 }} </td>
+                    <td onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}')" > {{ mac.odds_draw }} </td>
+                    <td onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}')"> {{ mac.odds_team2 }} </td>       
                 </tr>
             {% endfor %}
         </table>

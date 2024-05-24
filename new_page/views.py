@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
 from django.shortcuts import render, redirect
-from new_page.models import Coach, Match
+from new_page.models import Coach, Match, Kupon
 
 User = get_user_model()
 
@@ -34,7 +34,7 @@ def LoginCall(request: HttpRequest):
 
 def RegisterCall(request: HttpRequest):
     if request.method == 'POST':
-        username=request.POST.get('ergister-username')
+        username=request.POST.get('register-username')
         if User.objects.filter(username=username).exists():
             return JsonResponse({'success': False, 'error': 'Kullanıcı adı çoktan alınmış'})
 
@@ -103,3 +103,26 @@ class ReklamPageView(TemplateView):
 
 class IletisimPageView(TemplateView):
     template_name = "iletisim.html"
+
+def KuponCall(request: HttpRequest):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            tutar = float(request.POST.get('Tutar'))
+            if tutar <= int(request.user.balance):
+                oran = float(request.POST.get('send-oran'))
+                kazanc = float(request.POST.get('send-kazanc'))
+                amount = int(request.POST.get('Sayi'))
+                maclar_json = request.POST.get('send-dict')
+                Kupon.objects.create(oran=oran, yatirialan=tutar ,kazanc=kazanc, kupon_sayisi=amount, Kullanici=request.user, Match=maclar_json)
+                request.user.balance -= tutar
+                request.user.save()
+                return redirect('koclar')
+
+            else:
+                messages.error(request, 'Bu kupon için yeterli bakiyen yok !')
+                return redirect('homepage')
+        else:
+            messages.error(request, 'Giriş yapmadan kupon oynayamassın!')
+            return redirect('homepage')
+    else:
+        return redirect(request, 'bahisler')

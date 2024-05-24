@@ -1,11 +1,11 @@
 
 <div id="kupon-form">
+   {% if user.is_authenticated %}
     <button id="kupon-toggle"
-        onclick="toggleKuponForm()">&#11165 Kuponum</button>
-    <div class="kupon">
-        <form>
-            <!--ol>
-            </ol map the selected bahis's here-->
+        onclick="toggleKuponForm()">&#11165 Kuponum</button> 
+    <div class="kupon">   
+        <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
+            {% csrf_token %}
             <label for="Oran">Oran:</label>
             <h3 id="Oran">1</h3>
             <label for="Sistem">Sistem:</label>
@@ -19,9 +19,13 @@
             <input id="Sayi" type="number" name="Sayi" value="1" required>
             <label for="Kazanc">Kazanacağınız Para:</label>
             <h3 id="Kazanc">Lütfen değer girin</h3>
-            <button type="submit" id="kupon-onay" disabled>Kuponu Onayla!</button>
+            <input id="send-oran" name="send-oran" type="hidden" value="">
+            <input id="send-kazanc" name="send-kazanc" type="hidden" value="">
+            <input id="send-dict" name="send-dict" type="hidden" value="">
+            <button onclick="myFunction()" id="kupon-onay" disabled>Kuponu Onayla!</button>
         </form>
     </div>
+    {% endif %}
 </div>
 <script>
     var systembutton1 = document.getElementById('system-button-1');
@@ -49,28 +53,42 @@
         else
         {
             kuponForm.style.bottom ="-50vh";
-        }
+        }  
     }
-    var oran =1.00;
+    var oran = 1.00 ;
     var oranOutput = document.getElementById('Oran');
-    function updateOran(value,operation)
+    var oynanan_maclar={}
+    function updateOran(value, mac_id, team, user_balance)
     {
-        if(operation)
+        value = value.replace(',','.').trim();
+        if(mac_id in oynanan_maclar)
         {
-            oran*=value;
+            if(oynanan_maclar[mac_id][0] == team)
+            {
+                oran/=oynanan_maclar[mac_id][1];
+                delete oynanan_maclar[mac_id];
+            }
+            else
+            {
+                oran/=oynanan_maclar[mac_id][1];
+                oran*=value;
+                oynanan_maclar[mac_id][0] = team;
+                oynanan_maclar[mac_id][1] = value;
+            }
         }
         else
         {
-            oran/=value
+            oran*=value;
+            oynanan_maclar[mac_id] = [team, value];
         }
         oranOutput.textContent = oran.toString();
-        updateKazanc();
+        updateKazanc(parseFloat(user_balance));
     }
     var tutarInput = document.getElementById('Tutar');
     var sayiInput = document.getElementById('Sayi');
     var kazancOutput = document.getElementById('Kazanc');
     var button = document.getElementById('kupon-onay');
-    function updateKazanc()
+    function updateKazanc(user_balance)
     {
         var tutar = parseFloat(tutarInput.value)
         var sayi = parseInt(sayiInput.value)
@@ -93,9 +111,31 @@
         else
         {
             kazancOutput.textContent = kazanc;
-            button.disabled=false;
+            if(user_balance<tutar)
+            {
+                button.disabled = true;
+                kazancOutput.textContent = "Yeterli Bakiyen yok!";
+            }
+            else
+            {
+                button.disabled=false;
+
+            }
         }
     }
     tutarInput.addEventListener('input', updateKazanc);
     sayiInput.addEventListener('input', updateKazanc);
+    var send_oran = document.getElementById('send-oran');
+    var send_kazanc = document.getElementById('send-kazanc');
+    var send_dict = document.getElementById('send-dict');
+    function myFunction()
+    {
+        event.preventDefault()
+        send_oran.value = oran;
+        send_kazanc.value = (parseFloat(tutarInput.value) * parseInt(sayiInput.value) * oran).toFixed(2);
+        const jsonData = JSON.stringify(oynanan_maclar);
+        send_dict.value = jsonData;
+        console.log(jsonData);
+        document.getElementById("kupon-form-form").submit();
+    }
 </script>
