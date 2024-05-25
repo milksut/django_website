@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import HomePageView, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall, PostCall
+from .views import HomePageCall, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall, PostCall
 from .views import IletisimPageView, LoginCall, RegisterCall, ModCall, CoachCall, LogoutCall
 
 urlpatterns = [
-    path("", HomePageView.as_view(), name="homepage"),
+    path("", HomePageCall, name="homepage"),
     path("bahisler", BahislerPageCall, name="bahisler"),
     path("koclar", KoclarPageCall, name="koclar"),
     path("gain_1M$.com", ReklamPageView.as_view(), name="the_reklam"),

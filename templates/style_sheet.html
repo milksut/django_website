@@ -354,6 +354,7 @@ float: left;
     border-spacing: 0;
     box-shadow: 0px 5px 3px 3px  rgb(76, 76, 108);
     border-radius: 7px;
+    min-width: 50vw;
 
 th, td {
         border: 1px solid black;
@@ -371,11 +372,6 @@ th, td {
     .mac-row{
         background-color: var(--second-orange);
     }
-    button{
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
 
     .table-baslik{
       border: 3px solid whitesmoke;
@@ -387,6 +383,7 @@ th, td {
 .coach-list li
 {
     list-style: none;
+    min-width: 50vw;
 }
 .coach-list li:first-child
 {
@@ -402,6 +399,7 @@ th, td {
     border-radius: 10px;
     margin-bottom: 0.8rem;
     position: relative;
+
 }
 
 .coach div {
@@ -420,9 +418,10 @@ th, td {
   cursor: pointer;
 }
 
-.coach .gopost:hover
+.hover-black:hover
 {
   background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .coach-img {
@@ -495,6 +494,10 @@ th, td {
 }
 .maclar{
     background-color: var(--second-orange);
+    td
+    {
+      cursor: pointer;
+    }
 }
 
 #login-form 

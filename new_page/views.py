@@ -87,8 +87,10 @@ def LogoutCall(request):
     logout(request)
     return redirect('homepage')
 
-class HomePageView(TemplateView):
-    template_name = "homepage.html"
+def HomePageCall(request):
+    Coachs = Coach.objects.filter(is_featured=True)
+    matches = Match.objects.filter(is_featured=True)
+    return render(request, 'homepage.html', {'Coachs': Coachs, 'matches':matches})
 
 def BahislerPageCall(request):
     matches = Match.objects.all()

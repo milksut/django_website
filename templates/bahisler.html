@@ -38,7 +38,7 @@
         </div>
     </div>
 </div>
-        <h1 style="width: 100%; display: flex;margin-top: 5vh; justify-content: center; color: pink;">Haftanın Maçları</h1>
+    <h1 style="width: 100%; display: flex;margin-top: 5vh; justify-content: center; color: pink;">Maçlar</h1>
     <div class="bahisler">
         <table>
             <tr class="mac-info">
@@ -56,9 +56,9 @@
                     <td>{{ mac.minumum_bet_amount }}</td>
                     <td>{{ mac.match_date }}</td>
                     <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
-                    <td onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}')"> {{ mac.odds_team1 }} </td>
-                    <td onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}')" > {{ mac.odds_draw }} </td>
-                    <td onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}')"> {{ mac.odds_team2 }} </td>       
+                    <td class="hover-black" onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}')"> {{ mac.odds_team1 }} </td>
+                    <td class="hover-black" onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}')" > {{ mac.odds_draw }} </td>
+                    <td class="hover-black" onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}')"> {{ mac.odds_team2 }} </td>       
                 </tr>
             {% endfor %}
         </table>
