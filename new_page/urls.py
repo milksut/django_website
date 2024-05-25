@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall
+from .views import HomePageView, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall, PostCall
 from .views import IletisimPageView, LoginCall, RegisterCall, ModCall, CoachCall, LogoutCall
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('post', CoachCall, name='coachCall'),
     path('logout', LogoutCall, name='logoutCall'),
     path('kuponUpdate', KuponCall, name='kuponCall'),
+    path('list_posts', PostCall, name='postCall'),
     ]

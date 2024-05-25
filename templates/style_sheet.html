@@ -395,16 +395,34 @@ th, td {
 
 .coach {
     border: 1px solid black;
-    height: 8rem; 
+    height: 8rem;
+    width: 100%; 
     display: flex;
     background-color: var(--coach-white);
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 0.8rem;
+    position: relative;
 }
 
 .coach div {
     display: inline-block;
     height: 100%;
+}
+
+.coach .gopost
+{
+  height: 100%;
+  width: 10%;
+  position: absolute;
+  right: 0;
+  border-style: none;
+  background: none;
+  cursor: pointer;
+}
+
+.coach .gopost:hover
+{
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .coach-img {
@@ -443,6 +461,7 @@ th, td {
     background: none;
     cursor: pointer;
 }
+
 
 /*bahisler için css*/
 /*-----------------------*/

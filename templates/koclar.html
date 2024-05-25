@@ -11,6 +11,8 @@
 <body>
     <div>
         <ul class="coach-list">
+            <li class="coach"><button class="gopost" style="width: 100%; background-color: var(--coach-green); border-style: inherit; border-radius: 10px;" 
+            onclick="location.href=`{% url 'postCall' %}`"> Tüm Postlar &#11166;</button></li>
             {% for koc in Coachs%}
             <li class="coach">
                 <div class="coach-img">
@@ -22,12 +24,12 @@
                         {{ koc.CoachLeague }}
                     </span>
                     <span class="coach-contact">
-                        <label for="">İletişim:</label>
                         <button type="button" onclick="location.href='https://mail.google.com/mail/?view=cm&fs=1&to={{koc.Kullanici.email}}'">
-                            <i class="fa-regular fa-envelope"></i>{{koc.Kullanici.email}}
+                            İletişim:<i class="fa-regular fa-envelope"></i> {{koc.Kullanici.email}}
                         </button>
                     </span>
                 </div>
+                <button class="gopost" onclick="location.href=`{% url 'postCall' %}?Coach={{ coach.id }}`">Postlar &#11166;</button>
             </li>
             {% endfor %}
             <li class="coach">

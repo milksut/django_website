@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
 from django.shortcuts import render, redirect
-from new_page.models import Coach, Match, Kupon
+from new_page.models import Coach, Match, Kupon, Post
 
 User = get_user_model()
 
@@ -125,4 +125,21 @@ def KuponCall(request: HttpRequest):
             messages.error(request, 'Giriş yapmadan kupon oynayamassın!')
             return redirect('homepage')
     else:
-        return redirect(request, 'bahisler')
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')
+
+def PostCall(request: HttpRequest):
+    if request.method == "GET":
+        Posts = Post.objects.all()
+        coach = request.GET.get('Coach')
+        match_tag = request.GET.get('match_tag')
+        if request.GET:
+            if coach:
+                Posts = Posts.filter(Coach_id=coach)
+            if match_tag:
+                Posts = Posts.filter(match_tag__id=match_tag)
+
+        return render(request, 'posts.html', {'posts' : Posts})
+    else:
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')

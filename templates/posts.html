@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "header.html" %}
+{% load static %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    {% for post in posts %}
+        <li>
+            <h3>Yazar: {{post.coach.first_name}} {{post.coach.last_name}}</h3>
+            <h4>İlgili maçlar:
+                {% for mac in post.match_tag.all %}
+                {{mac.team1}} vs {{mac.team2}}, 
+                {% endfor %}
+            </h4>
+            <p>{{post.text}}</p>
+        </li>
+    {% endfor %}
+   </ul> 
+</body>
+{% endblock content %}
+</html>
