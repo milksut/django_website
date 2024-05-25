@@ -61,9 +61,9 @@
                         <td>{{ mac.minumum_bet_amount }}</td>
                         <td>{{ mac.match_date }}</td>
                         <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
-                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}')"> {{ mac.odds_team1 }} </td>
-                        <td class="hover-black" onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}')" > {{ mac.odds_draw }} </td>
-                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}')"> {{ mac.odds_team2 }} </td>       
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team1 }} </td>
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')" > {{ mac.odds_draw }} </td>
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team2 }} </td>       
                     </tr>
                 {% endfor %}
             </table>
