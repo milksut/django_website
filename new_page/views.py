@@ -133,13 +133,15 @@ def PostCall(request: HttpRequest):
         Posts = Post.objects.all()
         coach = request.GET.get('Coach')
         match_tag = request.GET.get('match_tag')
+        print(coach, match_tag)
         if request.GET:
             if coach:
                 Posts = Posts.filter(Coach_id=coach)
             if match_tag:
                 Posts = Posts.filter(match_tag__id=match_tag)
 
-        return render(request, 'posts.html', {'posts' : Posts})
+        match_tags = Match.objects.filter(post__in=Posts).distinct()
+        return render(request, 'posts.html', {'posts' : Posts, 'match_tags': match_tags, 'coach':coach})
     else:
         messages.error(request, 'Geçersiz Method')
         return redirect('homepage')
