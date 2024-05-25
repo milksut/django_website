@@ -64,7 +64,7 @@ class IletisimPageView(TemplateView):
     template_name = "iletisim.html"
 
 class AdminPageView(TemplateView):
-    template_name = "admin2.html",
+    template_name = "admin2.html"
     
 
 
