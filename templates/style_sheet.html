@@ -611,20 +611,46 @@ th, td {
 /*----------------------------------------------------------*/
 
 
-.form {
+.form-container1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 350px;
-  height: 518px;
+  width: 350px;
+  height: 700px;
   padding: 20px;
   border-radius: 20px;
-  position: relative;
+  position:relative;
   background-color: #1a1a1a;
   color: #fff;
   border: 1px solid #333;
+  box-sizing: border-box;
 }
 
+.input-group input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  font-size: medium;
+  box-sizing: border-box; /* Genişliği kutu modeli içine dahil eder */
+  width: 100%; /* Genişliği ebeveynine göre ayarlar */
+}
+
+
+.sign {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #00bfff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Genişliği ebeveynine göre ayarlar */
+}
 
 
 .title {
@@ -762,12 +788,14 @@ th, td {
 
 }
 
+
+
 /*buradan asagisi login card ------------------------------*/
 /*---------------------------------------------------------*/
 /*----------------------------------------------------------*/
 .form-container {
   width: 320px;
-  
+  height: 465px;
   border-radius: 0.75rem;
   background-color: rgba(17, 24, 39, 1);
   padding: 2rem;
@@ -953,8 +981,10 @@ p{
   max-width: 600px;
   height: 600px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: auto;
   border-radius: 0.5rem;
   background: #606c88;
   background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
@@ -962,6 +992,7 @@ p{
   padding: 1rem;
   color: rgb(107, 114, 128);
   box-shadow: 0px 87px 78px -39px rgba(0,0,0,0.4);
+  position: relative;
 }
 
 .icon {
@@ -974,6 +1005,10 @@ p{
   border-radius: 0.5rem;
   background-color: #153586;
   color: rgb(59, 130, 246);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  
 }
 
 .icon svg {
@@ -982,18 +1017,25 @@ p{
 }
 
 .content {
+  margin-top: 3rem; /* Icon'un aşağısında başlatmak için boşluk ekleyin */
   margin-left: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 400;
+  text-align: left;
+  width: 100%;
 }
 
 .title {
+  margin-top: 1rem; /* İconun ve üst kenarın arasına boşluk ekleyin */
   margin-bottom: 0.25rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
   color: rgb(255, 255, 255);
+  text-align: center;
+  width: 100%;
 }
 
 .desc {
@@ -1002,6 +1044,7 @@ p{
   line-height: 1.25rem;
   font-weight: 400;
   color: rgb(202, 200, 200);
+  text-align:left;
 }
 
 .actions {
@@ -1009,6 +1052,8 @@ p{
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-gap: 0.5rem;
   gap: 0.5rem;
+  width: 100%;
+  margin-top: auto;
 }
 
 .download, .notnow {
