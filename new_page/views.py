@@ -71,18 +71,46 @@ def ModCall(request: HttpRequest):
 
 def CoachCall(request: HttpRequest):
     user = request.user
-    if user.is_authenticated:
-        if user.is_coach:
-            return render(request, 'post.html', {'user': user})
+    if request.method == "GET":
+        if user.is_authenticated:
+            if user.is_coach:
+                matches = Match.objects.all()
+                return render(request, 'post.html', {'user': user, "match_tags":matches})
 
+            else:
+                messages.error(request, 'Sen Koç Değilsin!')
+                return redirect('homepage')
+                
         else:
-            messages.error(request, 'Sen Koç Değilsin!')
+            messages.error(request, 'Giriş yapmamışsın!')
             return redirect('homepage')
-            
-    else:
+    
+    elif request.method == "POST":
+        if user.is_authenticated:
+            if user.is_coach:
+                text = request.POST.get('post_text')
+                match_tags = request.POST.getlist('match_tag_select')
+
+                post = Post.objects.create(Coach=user.coach, text=text)
+
+                for match_id in match_tags:
+                    match = Match.objects.get(id=match_id)
+                    post.match_tag.add(match)
+
+                post.save()
+
+                messages.error(request, 'Post Kaydedildi !')
+                return redirect('coachCall')
+            else:
+                messages.error(request, 'Sen Koç Değilsin!')
+                return redirect('homepage')
+        else:
             messages.error(request, 'Giriş yapmamışsın!')
             return redirect('homepage')
 
+    else:
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')
 def LogoutCall(request):
     logout(request)
     return redirect('homepage')
