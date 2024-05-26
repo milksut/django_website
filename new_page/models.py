@@ -33,6 +33,7 @@ class Coach(models.Model):
     CoachLeague= models.CharField(("Lig Uzmanligi"), max_length=50)
     Coachİmage = models.ImageField((""),upload_to="static/pictures")
     Kullanici = models.OneToOneField(Kullanici, on_delete=models.CASCADE)
+    is_featured = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.Kullanici.username} - {self.CoachLeague}"

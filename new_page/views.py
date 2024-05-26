@@ -6,7 +6,8 @@ from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
 from django.shortcuts import render, redirect
-from new_page.models import Coach, Match, Kupon
+from new_page.models import Coach, Match, Kupon, Post
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -25,12 +26,13 @@ def LoginCall(request: HttpRequest):
                 return JsonResponse({'success': True, 'redirect_url': '/post'})
 
             else:
-                return JsonResponse({'success': True, 'redirect_url': ''})
+                messages.success(request, 'Hoşgeldin '+username+"!")
+                return JsonResponse({'success': True, 'redirect_url': '/'})
 
         else:
             return JsonResponse({'success': False, 'error': 'Yanlış Kullanıcı adı veya şifre'})
 
-    return JsonResponse({'success': False, 'error': 'Invalid request method'},status=400)
+    return JsonResponse({'success': False, 'error': 'Invalid request method'},status=405)
 
 def RegisterCall(request: HttpRequest):
     if request.method == 'POST':
@@ -49,11 +51,42 @@ def RegisterCall(request: HttpRequest):
             user = User.objects.create(username= username, password=hashers.make_password(password),
             first_name=request.POST.get('first-name'), last_name=request.POST.get('last-name'), email=request.POST.get('email'))
             login(request, user)
-            return JsonResponse({'success': True, 'redirect_url': ''})
+            messages.success(request, 'Kayıt Olma Başarılı!')
+            return JsonResponse({'success': True, 'redirect_url': '/'})
 
         except ValidationError as e:
             error_messages = [tercuman(message) + '\n' for message in e.messages]
             return JsonResponse({'success': False, 'error': error_messages})
+
+def ResetPasswordCall(request: HttpRequest):
+    if request.method == 'POST':
+        new_password=request.POST.get('reset-new-password')
+        confrim_password=request.POST.get('reset-confrim-password')
+        old_password=request.POST.get('reset-old-password')
+
+        if new_password != confrim_password:
+            return JsonResponse({'success': False, 'error': ' Yeni parolalar aynı değil!'})
+
+        if not request.user.check_password(old_password):
+            return JsonResponse({'success': False, 'error': 'Eski parola aynı değil!'})
+        
+        if new_password == old_password:
+            return JsonResponse({'success': False, 'error': 'Eski parola ve yeni parola aynı olamaz!'})
+        
+        try:
+            password_validation.validate_password(new_password)
+
+            request.user.set_password(new_password)
+            request.user.save()
+            messages.success(request, 'Şifre Başarıyla değiştirildi!')
+            return JsonResponse({'success': True, 'redirect_url': '/'})
+
+        except ValidationError as e:
+            error_messages = [tercuman(message) + '\n' for message in e.messages]
+            return JsonResponse({'success': False, 'error': error_messages})
+
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'},status=405)
 
 def ModCall(request: HttpRequest):
     user = request.user
@@ -71,32 +104,67 @@ def ModCall(request: HttpRequest):
 
 def CoachCall(request: HttpRequest):
     user = request.user
-    if user.is_authenticated:
-        if user.is_coach:
-            return render(request, 'post.html', {'user': user})
+    if request.method == "GET":
+        if user.is_authenticated:
+            if user.is_coach:
+                matches = Match.objects.all()
+                return render(request, 'post.html', {'user': user, "match_tags":matches})
 
+            else:
+                messages.error(request, 'Sen Koç Değilsin!')
+                return redirect('homepage')
+                
         else:
-            messages.error(request, 'Sen Koç Değilsin!')
-            return redirect('homepage')
-            
-    else:
             messages.error(request, 'Giriş yapmamışsın!')
             return redirect('homepage')
+    
+    elif request.method == "POST":
+        if user.is_authenticated:
+            if user.is_coach:
+                text = request.POST.get('post_text')
+                match_tags = request.POST.getlist('match_tag_select')
+
+                post = Post.objects.create(Coach=user.coach, text=text)
+
+                for match_id in match_tags:
+                    match = Match.objects.get(id=match_id)
+                    post.match_tag.add(match)
+
+                post.save()
+
+                messages.error(request, 'Post Kaydedildi !')
+                return redirect('coachCall')
+            else:
+                messages.error(request, 'Sen Koç Değilsin!')
+                return redirect('homepage')
+        else:
+            messages.error(request, 'Giriş yapmamışsın!')
+            return redirect('homepage')
+
+    else:
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')
 
 def LogoutCall(request):
     logout(request)
     return redirect('homepage')
 
-class HomePageView(TemplateView):
-    template_name = "homepage.html"
+def HomePageCall(request):
+    Coachs = Coach.objects.filter(is_featured=True)
+    matches = Match.objects.filter(is_featured=True)
+    return render(request, 'homepage.html', {'Coachs': Coachs, 'matches':matches})
 
 def BahislerPageCall(request):
-    matches = Match.objects.all()
-    return render(request, 'bahisler.html', {'matches': matches})
+    if request.method == "GET":
+        name = request.GET.get('name')
+        matches = Match.objects.all()
+        if name:
+            matches = matches.filter(Q(team1__icontains=name) | Q(team2__icontains=name))
+        return render(request, 'bahisler.html', {'matches': matches})
 
 def KoclarPageCall(request):
-    coachs = Coach.objects.all()
-    return render(request, 'koclar.html', {'coachs': coachs})
+    Coachs = Coach.objects.all()
+    return render(request, 'koclar.html', {'Coachs': Coachs})
 
 class ReklamPageView(TemplateView):
     template_name = "the_big_add.html"
@@ -125,4 +193,22 @@ def KuponCall(request: HttpRequest):
             messages.error(request, 'Giriş yapmadan kupon oynayamassın!')
             return redirect('homepage')
     else:
-        return redirect(request, 'bahisler')
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')
+
+def PostCall(request: HttpRequest):
+    if request.method == "GET":
+        Posts = Post.objects.all()
+        coach = request.GET.get('Coach')
+        match_tag = request.GET.get('match_tag')
+        if request.GET:
+            if coach:
+                Posts = Posts.filter(Coach_id=coach)
+            if match_tag:
+                Posts = Posts.filter(match_tag__id=match_tag)
+
+        match_tags = Match.objects.filter(post__in=Posts).distinct()
+        return render(request, 'posts.html', {'posts' : Posts, 'match_tags': match_tags, 'coach':coach})
+    else:
+        messages.error(request, 'Geçersiz Method')
+        return redirect('homepage')

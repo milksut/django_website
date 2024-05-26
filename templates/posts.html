@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "header.html" %}
+{% load static %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="search-bar"><!--plase make css for this! -->
+    <select name="match_tag_select" id="match_tag_select">
+        {% for mac in match_tags %}
+        <option value="{{mac.id}}">{{mac.team1}} vs {{mac.team2}}</option>
+        {% endfor %}
+    </select>
+    <button onclick="filter_posts('{{coach}}')" >&#128269</button>
+    </div>
+    <ul><!--plase make css for this! -->
+    {% for post in posts %}
+        <li>
+            <h3>Yazar: {{post.Coach.Kullanici.first_name}} {{post.Coach.Kullanici.last_name}}</h3>
+            <h4>İlgili maçlar:
+                {% for mac in post.match_tag.all %}
+                {{mac.team1}} vs {{mac.team2}}, 
+                {% endfor %}
+            </h4>
+            <p>{{post.text}}</p>
+        </li>
+    {% endfor %}
+   </ul> 
+</body>
+<script>
+    function filter_posts(coach)
+    {
+        var mac_id =  document.getElementById("match_tag_select").value;
+        if(coach != "None")
+        {
+            window.location.href = "{% url 'postCall' %}?Coach=" + coach + "&match_tag=" + mac_id;
+        }
+        else
+        {
+            window.location.href = "{% url 'postCall' %}?match_tag=" + mac_id;
+        }
+    }
+</script>
+{% endblock content %}
+</html>
