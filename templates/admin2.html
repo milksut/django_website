@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 {% extends "header.html" %}
-{% load static %}
 {% block content %}
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +35,9 @@
 
     </style>
 </head>
+
 <body>
+    <h3>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa</h3>
     <div class="admin_html">
         
         <div class="admin_div maclar_input" id="tum_maclar">
@@ -47,6 +50,12 @@
                 
             </form>
             {% include 'popular_bahisler.html' %}
+            <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <label>dosya yukle</label>
+                <input type="file">
+                <button type="submit">yukle</button>
+            </form>
         </div>
         <div class="admin_div koclar_yorum" id="tum_maclar">
             <h2>Koçlar Yorum</h2>

@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
-from django.shortcuts import render, redirect
+import csv, io
+from django.contrib.auth.decorators import  permission_required
+from django.shortcuts import render, redirect, get_object_or_404
 from new_page.models import Coach, Match, Kupon, Post
 from django.db.models import Q
 
@@ -171,6 +173,44 @@ class ReklamPageView(TemplateView):
 
 class IletisimPageView(TemplateView):
     template_name = "iletisim.html"
+
+class AdminPageView(TemplateView):
+    template_name = "admin2.html"
+    
+
+
+@permission_required('admin.can_add_log_entry')
+def contact_upload(request):
+    template = "admin2.html"
+
+    prompt = {
+        'order': 'Order of the csv should be '
+    }
+
+    if request.method == "GET":
+        return render(request, template, prompt)
+
+    csv_file = request.FILES['file']
+
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, "csv dosyasi yukle")
+
+    data_set = csv_file.read().decode('UTF-8')
+    io_string = io.StringIO(data_set)
+    next(io_string)
+    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+        _, created = Contact.objects.uptade_or_create(
+            team1 = column[0],
+            team2 = column[1],
+            match_date = column [2],
+            odds_team1 = column[3],
+            odds_draw = column[4],
+            odds_team2 = column [5],
+            is_featured = column [6]
+        )
+
+    context = {}
+    return render(request, template, context)
 
 def KuponCall(request: HttpRequest):
     if request.method == 'POST':
