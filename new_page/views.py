@@ -25,12 +25,13 @@ def LoginCall(request: HttpRequest):
                 return JsonResponse({'success': True, 'redirect_url': '/post'})
 
             else:
-                return JsonResponse({'success': True, 'redirect_url': ''})
+                messages.success(request, 'Hoşgeldin '+username+"!")
+                return JsonResponse({'success': True, 'redirect_url': '/'})
 
         else:
             return JsonResponse({'success': False, 'error': 'Yanlış Kullanıcı adı veya şifre'})
 
-    return JsonResponse({'success': False, 'error': 'Invalid request method'},status=400)
+    return JsonResponse({'success': False, 'error': 'Invalid request method'},status=405)
 
 def RegisterCall(request: HttpRequest):
     if request.method == 'POST':
@@ -49,11 +50,42 @@ def RegisterCall(request: HttpRequest):
             user = User.objects.create(username= username, password=hashers.make_password(password),
             first_name=request.POST.get('first-name'), last_name=request.POST.get('last-name'), email=request.POST.get('email'))
             login(request, user)
-            return JsonResponse({'success': True, 'redirect_url': ''})
+            messages.success(request, 'Kayıt Olma Başarılı!')
+            return JsonResponse({'success': True, 'redirect_url': '/'})
 
         except ValidationError as e:
             error_messages = [tercuman(message) + '\n' for message in e.messages]
             return JsonResponse({'success': False, 'error': error_messages})
+
+def ResetPasswordCall(request: HttpRequest):
+    if request.method == 'POST':
+        new_password=request.POST.get('reset-new-password')
+        confrim_password=request.POST.get('reset-confrim-password')
+        old_password=request.POST.get('reset-old-password')
+
+        if new_password != confrim_password:
+            return JsonResponse({'success': False, 'error': ' Yeni parolalar aynı değil!'})
+
+        if not request.user.check_password(old_password):
+            return JsonResponse({'success': False, 'error': 'Eski parola aynı değil!'})
+        
+        if new_password == old_password:
+            return JsonResponse({'success': False, 'error': 'Eski parola ve yeni parola aynı olamaz!'})
+        
+        try:
+            password_validation.validate_password(new_password)
+
+            request.user.set_password(new_password)
+            request.user.save()
+            messages.success(request, 'Şifre Başarıyla değiştirildi!')
+            return JsonResponse({'success': True, 'redirect_url': '/'})
+
+        except ValidationError as e:
+            error_messages = [tercuman(message) + '\n' for message in e.messages]
+            return JsonResponse({'success': False, 'error': error_messages})
+
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'},status=405)
 
 def ModCall(request: HttpRequest):
     user = request.user
@@ -111,6 +143,7 @@ def CoachCall(request: HttpRequest):
     else:
         messages.error(request, 'Geçersiz Method')
         return redirect('homepage')
+
 def LogoutCall(request):
     logout(request)
     return redirect('homepage')

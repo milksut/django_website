@@ -21,8 +21,8 @@
           <li><a href="{% url 'koclar' %}">Koçlar</a></li>
 
           {% if user.is_authenticated %}
-               <li style="float: right;">
-                    <img src="{% static 'pictures/a1.jpg'%}" alt="profile_button" onclick="toggleDropdown()" style="width: 100%; height: 100%;">             
+               <li style="float: right; padding: 0; margin: 0;">
+                    <img src="{% static 'pictures/profile_pic.png'%}" alt="profile_button" onclick="toggleDropdown()" style="height: 70%; aspect-ratio: 1;">             
                </li>
                {% if user.is_staff %}
                     <li style="float: right;"><a href="{% url 'modCall' %}">Moderasyon sayfası</a></li>
@@ -45,9 +45,9 @@
      </ul>
      <div class="dropdown-content" id="drop-down-list">
           <ul>
-               <li><a href="{% url 'bahisler' %}">KOÇLAR</a></li>
-               <li><a href="{% url 'bahisler' %}">SATILIK KOPRU</a></li>
-               <li><a href="{% url 'logoutCall' %}">Çıkış Yap</a></li>
+               <li><a href="{% url 'homepage' %}">Kuponlarım</a></li>
+               <li><a onclick="toggleResetPassword()">Şifremi Sıfırla</a></li>
+               <li style="border-top: 1px solid #ccc;"><a href="{% url 'logoutCall' %}">Çıkış Yap</a></li>
           </ul>
      </div>
 </div>
@@ -55,6 +55,7 @@
 </header>
 {% include 'login_form.html' %}
 {% include 'register_form.html' %}
+{% include 'reset_password_form.html' %}
 <script>
      function toggleRegisterForm()
      {
@@ -75,6 +76,11 @@
      {
           var Dropdown = document.getElementById('drop-down-list');
           Dropdown.style.display = Dropdown.style.display == 'block' ? 'none': 'block';
+     }
+     function toggleResetPassword()
+     {
+          var resetPasswordForm = document.getElementById('reset-password-form');
+          resetPasswordForm.style.display = resetPasswordForm.style.display == 'flex' ? 'none': 'flex';
      }
      function goToGames()
      {
@@ -151,6 +157,33 @@ $(document).ready(function(){
                error: function()
                {
                     $('#register-error-message').text('An error occurred. Please try again.').show();
+               }
+               });
+          });
+     });
+     </script>
+<script>
+     $(document).ready(function(){
+          $('#reset-password-form-form').on('submit', function(event){
+               event.preventDefault();
+               var $form = $(this);
+               $.ajax({
+               type: $form.attr('method'),
+               url: $form.attr('action'),
+               data: $form.serialize(), 
+               success: function(response)
+               {
+                    if (response.error) {
+                         $('#reset-password-error-message').text(response.error).show();
+                    } 
+                    else 
+                    {
+                         window.location.href = response.redirect_url;
+                    }
+               },
+               error: function()
+               {
+                    $('#reset-password-error-message').text('An error occurred. Please try again.').show();
                }
                });
           });

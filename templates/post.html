@@ -12,11 +12,19 @@
 
 <body>
 {% for message in messages %}
-    <div class="alert" style="background-color: lime;">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <strong>{{ message }}</strong>
-    </div>
+    {% if message.tags == 'error' %}
+        <div class="alert-error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
+        </div>
+    {% elif message.tags == 'success' %}
+        <div class="alert-success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
+        </div>
+    {% endif %}
 {% endfor %}
+
 <div class="alert" id="error-message" style="display: none;">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     <strong>En az 1 maç seçiniz!</strong>
