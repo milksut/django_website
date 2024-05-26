@@ -1,39 +1,82 @@
-
 {% extends "header.html" %}
 {% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post</title>
 </head>
+
 <body>
-    
-    <div class="card">
-        <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff" d="M20 14V17.5C20 20.5577 16 20.5 12 20.5C8 20.5 4 20.5577 4 17.5V14M12 15L12 3M12 15L8 11M12 15L16 11"></path> </g></svg>
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+        <div class="alert-error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
         </div>
-        <div class="content">
-            <span class="title">Good news Mac users!</span>
-            <div class="desc">This software is now available for download.</div> 
+    {% elif message.tags == 'success' %}
+        <div class="alert-success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
+        </div>
+    {% endif %}
+{% endfor %}
+
+<div class="alert" id="error-message" style="display: none;">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>En az 1 maç seçiniz!</strong>
+</div>
+<div class="card">
+    <div class="content">
+        <span class="title">DecoyBet.com Koçun Mesajı</span>
+
+        <div class="desc">Takipçilerinizle haftanın maçları hakkında görüşlerinizi paylaşın! Analiz yapın,
+            tahminlerinizi belirtin. Başarılı tahminlerinizde üst sıralara çıkacağınız gibi tersi durumu da
+            unutmayın. Olağan dışı bir durumda adminin müdahale hakkı bulunmaktadır. 
+        </div>
+
+        <form id="post-form" action="{% url 'coachCall' %}" method="post" onsubmit="return post_post()">
+            {% csrf_token %}
+
+            <textarea id="post_text" name="post_text" placeholder="Mesajiniz:"></textarea> <br><br>
+
+            <label style="color: white; float: left;" for="match_tag_select">Postununz ilgili olduğu maçları seçin!
+                <br>Birden fazla seçmek için ctrl tuşuna basın!<br>
+            </label>
+            
+            <select name="match_tag_select" id="match_tag_select" class="notnow" multiple size="4">
+                {% for mac in match_tags %}
+                <option value="{{mac.id}}">{{mac.team1}} vs {{mac.team2}}</option>
+                {% endfor %}
+            </select>
+
             <div class="actions">
                 <div>
-                    <a href="#" class="download">Try it free</a>
+                    <button type="submit" class="notnow">Gönder</button> <br><br><br><br>
                 </div>
-                <div>
-                    <a href="#" class="notnow">Not now</a> 
-                </div>
-            </div>    
-        </div>
-        <button type="button" class="close">
-            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-        </button>
+            </div>
+
+        </form>
+
+    </div>
 </div>
-
-
 </body>
-
+<script>
+    function post_post()
+    {
+        var match_tag_select = document.getElementById("match_tag_select");
+        var match_tags = Array.from(match_tag_select.selectedOptions);
+        if (match_tags.length < 1)
+        {
+            document.getElementById('error-message').style.display = 'block';
+            return false;
+        }
+        document.getElementById('error-message').style.display = 'none';
+    }
+</script>
 {% endblock content %}
+
 </html>

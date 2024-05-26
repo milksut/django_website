@@ -3,8 +3,10 @@
    {% if user.is_authenticated %}
     <button id="kupon-toggle"
         onclick="toggleKuponForm()">&#11165 Kuponum</button> 
-    <div class="kupon">   
+    <div class="kupon">  
         <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
+            <div id="kupon_maclar" class="kupon_maclar"><!--add for this pls, make a white bacground, gix the writnig-->
+            </div> 
             {% csrf_token %}
             <label for="Oran">Oran:</label>
             <h3 id="Oran">1</h3>
@@ -58,7 +60,7 @@
     var oran = 1.00 ;
     var oranOutput = document.getElementById('Oran');
     var oynanan_maclar={}
-    function updateOran(value, mac_id, team, user_balance)
+    function updateOran(value, mac_id, team, user_balance, mac_name)
     {
         value = value.replace(',','.').trim();
         if(mac_id in oynanan_maclar)
@@ -79,7 +81,18 @@
         else
         {
             oran*=value;
-            oynanan_maclar[mac_id] = [team, value];
+            oynanan_maclar[mac_id] = [team, value, mac_name];
+        }
+        oran = oran.toFixed(2);
+        var kupon_maclar = document.getElementById('kupon_maclar');
+        kupon_maclar.textContent="";
+        for (var mac_id in oynanan_maclar)
+        {
+            if (oynanan_maclar.hasOwnProperty(mac_id))
+            {
+                var values = oynanan_maclar[mac_id]
+                kupon_maclar.textContent += "\n ⚽️" + values[2] + " Oynan takım:" + values[0] + " Oran:" + values[1] 
+            }
         }
         oranOutput.textContent = oran.toString();
         updateKazanc(parseFloat(user_balance));

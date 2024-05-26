@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import HomePageView, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall
-from .views import IletisimPageView, LoginCall, RegisterCall,AdminPageView, ModCall, CoachCall, LogoutCall
+from .views import HomePageCall, BahislerPageCall, KoclarPageCall, ReklamPageView, KuponCall, PostCall
+from .views import IletisimPageView, LoginCall, RegisterCall, ModCall, CoachCall, LogoutCall, ResetPasswordCall
 
 urlpatterns = [
-    path("", HomePageView.as_view(), name="homepage"),
+    path("", HomePageCall, name="homepage"),
     path("bahisler", BahislerPageCall, name="bahisler"),
     path("koclar", KoclarPageCall, name="koclar"),
     path("gain_1M$.com", ReklamPageView.as_view(), name="the_reklam"),
@@ -14,4 +14,6 @@ urlpatterns = [
     path('post', CoachCall, name='coachCall'),
     path('logout', LogoutCall, name='logoutCall'),
     path('kuponUpdate', KuponCall, name='kuponCall'),
+    path('list_posts', PostCall, name='postCall'),
+    path('reset_password', ResetPasswordCall, name='resetPasswordCall'),
     ]
