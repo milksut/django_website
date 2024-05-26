@@ -17,6 +17,10 @@
         <strong>{{ message }}</strong>
     </div>
 {% endfor %}
+<div class="alert" id="error-message" style="display: none;">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>En az 1 maç seçiniz!</strong>
+</div>
 <div class="card">
     <div class="content">
         <span class="title">DecoyBet.com Koçun Mesajı</span>
@@ -28,12 +32,11 @@
 
         <form id="post-form" action="{% url 'coachCall' %}" method="post" onsubmit="return post_post()">
             {% csrf_token %}
-            
+
             <textarea id="post_text" name="post_text" placeholder="Mesajiniz:"></textarea> <br><br>
 
             <label style="color: white; float: left;" for="match_tag_select">Postununz ilgili olduğu maçları seçin!
                 <br>Birden fazla seçmek için ctrl tuşuna basın!<br>
-                <div id="error-message" style="color: red; display: none;">En az 1 maç seçiniz!</div>
             </label>
             
             <select name="match_tag_select" id="match_tag_select" class="notnow" multiple size="4">
