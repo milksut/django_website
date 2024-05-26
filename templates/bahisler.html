@@ -39,6 +39,10 @@
     </div>
 </div>
     <h1 style="width: 100%; display: flex;margin-top: 5vh; justify-content: center; color: pink;">Maçlar</h1>
+    <div class="search-bar"><!--add css to this-->
+        <input type="text" name="mac-filter-name" id="mac-filter-name">
+        <button onclick="filter_mac()" >&#128269</button>
+    </div>
     <div class="bahisler">
         <table>
             <tr class="mac-info">
@@ -50,20 +54,33 @@
                 <td class="mac-oran">0</td>
                 <td class="mac-oran">2</td>
             </tr>
-            {% for mac in matches %}
+            {% if matches|length != 0 %}
+                {% for mac in matches %}
+                    <tr class="maclar">
+                        <td>{{ mac.id }}</td>
+                        <td>{{ mac.minumum_bet_amount }}</td>
+                        <td>{{ mac.match_date }}</td>
+                        <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team1 }} </td>
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')" > {{ mac.odds_draw }} </td>
+                        <td class="hover-black" onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team2 }} </td>       
+                    </tr>
+                {% endfor %}
+            {% else %}
                 <tr class="maclar">
-                    <td>{{ mac.id }}</td>
-                    <td>{{ mac.minumum_bet_amount }}</td>
-                    <td>{{ mac.match_date }}</td>
-                    <td>{{ mac.team1 }} - {{ mac.team2 }}</td>
-                    <td class="hover-black" onclick="updateOran('{{ mac.odds_team1 }}', '{{ mac.id }}', 1, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team1 }} </td>
-                    <td class="hover-black" onclick="updateOran('{{ mac.odds_draw }}', '{{ mac.id }}', 0, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')" > {{ mac.odds_draw }} </td>
-                    <td class="hover-black" onclick="updateOran('{{ mac.odds_team2 }}', '{{ mac.id }}', 2, '{{user.balance}}', '{{ mac.team1 }} - {{ mac.team2 }}')"> {{ mac.odds_team2 }} </td>       
-                </tr>
-            {% endfor %}
+                    <td><strong>Maç Bulunamadı!</strong></td>
+            {% endif %}
         </table>
     </div>
 </body>
+<script>
+    function filter_mac()
+    {
+        var mac_filter_name =  document.getElementById("mac-filter-name").value;
+        if (mac_filter_name)
+            window.location.href = "{% url 'bahisler' %}?name=" + mac_filter_name;
+    }
+</script>
 {% include 'kupon_form.html' %}
 {% endblock content %}
 </html>

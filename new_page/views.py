@@ -7,6 +7,7 @@ from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext_lazy as tercuman
 from django.shortcuts import render, redirect
 from new_page.models import Coach, Match, Kupon, Post
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -154,8 +155,12 @@ def HomePageCall(request):
     return render(request, 'homepage.html', {'Coachs': Coachs, 'matches':matches})
 
 def BahislerPageCall(request):
-    matches = Match.objects.all()
-    return render(request, 'bahisler.html', {'matches': matches})
+    if request.method == "GET":
+        name = request.GET.get('name')
+        matches = Match.objects.all()
+        if name:
+            matches = matches.filter(Q(team1__icontains=name) | Q(team2__icontains=name))
+        return render(request, 'bahisler.html', {'matches': matches})
 
 def KoclarPageCall(request):
     Coachs = Coach.objects.all()
@@ -196,7 +201,6 @@ def PostCall(request: HttpRequest):
         Posts = Post.objects.all()
         coach = request.GET.get('Coach')
         match_tag = request.GET.get('match_tag')
-        print(coach, match_tag)
         if request.GET:
             if coach:
                 Posts = Posts.filter(Coach_id=coach)
