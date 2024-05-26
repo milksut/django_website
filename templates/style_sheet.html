@@ -278,7 +278,6 @@ body
 
 /*-------------------Dropdown--------------------------*/
 /*----------------------------------------------------*/
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -286,15 +285,33 @@ body
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   background-color: #f9f9f9;
+  border: 2px solid #ff69b4;
+  border-radius: 8px; 
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .dropdown-content li {
-  color: white;
+  color: black;
   padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content li a {
+  color: black;
   text-decoration: none;
   display: block;
 }
 
+.dropdown-content li:hover {
+  background-color: #ddd;
+}
 /* buradan asagisi oyunlar.html'dir-------------------*/
 /*----------------------------------------------------*/
 /*----------------------------------------------------*/
