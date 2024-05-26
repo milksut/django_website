@@ -9,27 +9,29 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="search-bar"><!--plase make css for this! -->
-    <select name="match_tag_select" id="match_tag_select">
-        {% for mac in match_tags %}
-        <option value="{{mac.id}}">{{mac.team1}} vs {{mac.team2}}</option>
-        {% endfor %}
-    </select>
-    <button onclick="filter_posts('{{coach}}')" >&#128269</button>
-    </div>
-    <ul><!--plase make css for this! -->
-    {% for post in posts %}
-        <li>
-            <h3>Yazar: {{post.Coach.Kullanici.first_name}} {{post.Coach.Kullanici.last_name}}</h3>
-            <h4>İlgili maçlar:
-                {% for mac in post.match_tag.all %}
-                {{mac.team1}} vs {{mac.team2}}, 
+    <div id="posts-html">
+        <div class="search-bar"><!--plase make css for this! -->
+            <select class="post-select" name="match_tag_select" id="match_tag_select">
+                {% for mac in match_tags %}
+                <option value="{{mac.id}}">{{mac.team1}} vs {{mac.team2}}</option>
                 {% endfor %}
-            </h4>
-            <p>{{post.text}}</p>
-        </li>
-    {% endfor %}
-   </ul> 
+            </select>
+            <button class="post-search-btn" onclick="filter_posts('{{coach}}')" >&#128269</button>
+            </div>
+            <ul><!--plase make css for this! -->
+            {% for post in posts %}
+                <li class="post-li-item">
+                    <h3>Yazar: {{post.Coach.Kullanici.first_name}} {{post.Coach.Kullanici.last_name}}</h3>
+                    <h4>İlgili maçlar:
+                        {% for mac in post.match_tag.all %}
+                        {{mac.team1}} vs {{mac.team2}}, 
+                        {% endfor %}
+                    </h4>
+                    <p>{{post.text}}</p>
+                </li>
+            {% endfor %}
+           </ul> 
+    </div>
 </body>
 <script>
     function filter_posts(coach)
