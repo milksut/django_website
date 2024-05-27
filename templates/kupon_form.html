@@ -143,12 +143,11 @@
     var send_dict = document.getElementById('send-dict');
     function myFunction()
     {
-        event.preventDefault()
+        event.preventDefault();
         send_oran.value = oran;
         send_kazanc.value = (parseFloat(tutarInput.value) * parseInt(sayiInput.value) * oran).toFixed(2);
         const jsonData = JSON.stringify(oynanan_maclar);
         send_dict.value = jsonData;
-        console.log(jsonData);
         document.getElementById("kupon-form-form").submit();
     }
 </script>

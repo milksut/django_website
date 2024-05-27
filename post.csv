@@ -1,0 +1,10 @@
+text,Coach,Coach_id,post_id,match_tag,tag_names
+"selamlar herkese ben bir test postuyum, altayspor vs melikspor i
+çin, altay tarafından",altaycoach - lilaluga,1,1,1,altayspor vs melikspor
+"selamlar ben test postu 2  mehmet spor vs şükrü spor için, altay tarafından",altaycoach - lilaluga,1,2,2,mehmetspor vs şükrüspor
+"selamlar herkese ben bir test postuyum 3, altayspor vs melikspor i
+çin, mehmet tarafından",mehmet_coach - lilalugaxxx,2,3,1,altayspor vs melikspor
+"selamlar ben test postu 4  mehmet spor vs şükrü spor için,mehmettarafından",mehmet_coach - lilalugaxxx,2,4,2,mehmetspor vs şükrüspor
+"bu bir test postudur, altayspor vs melikspor, ve  mehmetspor vs şükrüspor için, mehmetcoach tarafından",mehmet_coach - lilalugaxxx,2,5,"1, 2","altayspor vs melikspor, mehmetspor vs şükrüspor"
+"bu bir test postudur 6, altayspor vs melikspor, ve  mehmetspor vs şükrüspor için, altaycoach tarafından",altaycoach - lilaluga,1,7,"1, 2","altayspor vs melikspor, mehmetspor vs şükrüspor"
+yeeeeeeeeeeeeeeeeeeeeeeeeeees,altaycoach - lilaluga,1,8,2,mehmetspor vs şükrüspor

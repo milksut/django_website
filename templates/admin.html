@@ -68,40 +68,56 @@
 </head>
 
 <body>
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+        <div class="alert-error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
+        </div>
+    {% elif message.tags == 'success' %}
+        <div class="alert-success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ message }}</strong>
+        </div>
+    {% endif %}
+{% endfor %}
+
     <div class="admin_html">
         
         <div class="admin_div maclar_input" id="tum_maclar">
             <h2>Tüm Maçlar</h2>
-            <form class="admin_form" action="">
+            <form class="admin_form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <label>İşlem Yapılacak Dosya</label>
-                <input type="file">
+                <label for="file">İşlem Yapılacak Dosya</label>
+                <input type="file" name="file" id="file" required>
+                <input type="text" name="content" hidden value="mac">
                 <button type="submit">Import</button>
-                <button type="submit">Export</button>
-                
+                <button onclick="getcsv('mac')" >Export</button>
             </form>
             
             
         </div>
         <div class="admin_div koclar_yorum" id="tum_maclar">
             <h2>Koçlar Yorum</h2>
-            <form class="admin_form" action="">
-                <input type="file">
-                <button id="import_tum">Import</button>
-                <button id="export_tum">Export</button>
+            <form class="admin_form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="file">İşlem Yapılacak Dosya</label>
+                <input type="file" name="file" id="file" required>
+                <input type="text" name="content" hidden value="post">
+                <button type="submit">Import</button>
+                <button onclick="getcsv('post')">Export</button>
             </form>
         </div>
         
     </div>
     <script>
-        
-        
-        function toggleTableVisibility() {
-            var table = document.querySelector(".bahis-table");
-            // Tablonun mevcut görünürlük durumunu al
-            var currentDisplay = table.style.display;
-            // Eğer tablo şu anda görünürse, gizle; aksi takdirde göster
-            table.style.display = (currentDisplay === "table" || !currentDisplay) ? "none" : "table";
+
+        function getcsv(content)
+        {
+            event.preventDefault();
+            console.log("evet");
+            window.location.href = "{% url 'contact' %}?content="+content;
+            console.log("hayır");
         }
 
     </script>
