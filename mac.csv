@@ -1,0 +1,4 @@
+team1,team2,minumum_bet_amount,match_date,odds_team1,odds_draw,odds_team2,is_featured,id
+altayspor,melikspor,1,2024-05-23,1.5,2.0,1.5,True,1
+mehmetspor,şükrüspor,1,2024-05-26,3.0,1.2,1.4,False,2
+fener,galata,1,2024-05-19,1.2,1.1,1.3,False,4
