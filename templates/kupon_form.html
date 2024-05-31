@@ -5,7 +5,7 @@
         onclick="toggleKuponForm()">&#11165 Kuponum</button> 
     <div class="kupon">  
         <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
-            <div id="kupon_maclar" class="kupon_maclar"><!--add for this pls, make a white bacground, gix the writnig-->
+            <div id="kupon_maclar" class="kupon_maclar">
             </div> 
             {% csrf_token %}
             <label for="Oran">Oran:</label>
