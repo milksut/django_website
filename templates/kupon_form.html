@@ -5,26 +5,32 @@
         onclick="toggleKuponForm()">&#11165 Kuponum</button> 
     <div class="kupon">  
         <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
-            <div id="kupon_maclar" class="kupon_maclar"><!--add for this pls, make a white bacground, gix the writnig-->
-            </div> 
-            {% csrf_token %}
+        <div class="kupon-cerceve">
+
+            <div id="kupon_maclar" class="kupon_maclar"></div> <!--add for this pls, make a white bacground, gix the writnig-->
             <label for="Oran">Oran:</label>
             <h3 id="Oran">1</h3>
+        </div>    
+            {% csrf_token %}
+           
             <label for="Sistem">Sistem:</label>
             <div style="display: flex; justify-content: space-between; width: 30%;">
                 <button id="system-button-1" type="button" disabled onclick="toggleSistem(1)">1</button>
                 <button id="system-button-2" type="button" onclick="toggleSistem(2)">2</button>
             </div>
-            <label for="Tutar">Tutar:</label>
-            <input id="Tutar" type="number" step="0.1" name="Tutar" value="1.00" required>
-            <label for="Sayi">Kupon Sayisi:</label>
+            <label for="Tutar">Tutar:</label> <br>
+            <input id="Tutar" type="number" step="0.1" name="Tutar" value="1.00" required> <br>
+            <label for="Sayi"><span style="color: rgb(0, 0, 44);"> Kupon Sayisi:</span></label> 
             <input id="Sayi" type="number" name="Sayi" value="1" required>
-            <label for="Kazanc">Kazanacağınız Para:</label>
-            <h3 id="Kazanc">Lütfen değer girin</h3>
+            <label for="Kazanc"><span style="color: rgb(0, 0, 44);"> Kazanacağınız Para:</span></label>
+            <h3 id="Kazanc" style="color: rgb(0, 0, 44);">Lütfen değer girin</h3>
             <input id="send-oran" name="send-oran" type="hidden" value="">
             <input id="send-kazanc" name="send-kazanc" type="hidden" value="">
             <input id="send-dict" name="send-dict" type="hidden" value="">
-            <button onclick="myFunction()" id="kupon-onay" disabled>Kuponu Onayla!</button>
+          <!-- <button onclick="myFunction()" id="kupon-onay" disabled>Kuponu Onayla!</button>--> 
+            <button onclick="myFunction()" id="kupon-onay"disabled><p>Onayla!</p></button>
+                
+              
         </form>
     </div>
     {% endif %}
@@ -57,6 +63,9 @@
             kuponForm.style.bottom ="-50vh";
         }  
     }
+
+   
+
     var oran = 1.00 ;
     var oranOutput = document.getElementById('Oran');
     var oynanan_maclar={}
