@@ -331,6 +331,7 @@ font-family:Arial, Helvetica, sans-serif;
 font-size: 25px;
 text-decoration-line: underline;
 text-decoration-color: rgb(225, 111, 130);
+text-align: center;
 width: 100%;
 float: left;
 
@@ -380,6 +381,7 @@ float: left;
     box-shadow: 0px 5px 3px 3px  rgb(76, 76, 108);
     border-radius: 7px;
     min-width: 50vw;
+    margin-bottom: 5vh;
 
 th, td {
         border: 1px solid black;
@@ -496,6 +498,7 @@ th, td {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 .bahisler-search-bar button{
   margin-left: 1rem;
@@ -515,7 +518,8 @@ th, td {
   border-radius: 8px;
   font-size: 1rem;
   border: none;
-  text-align: center;
+  text-align: center; 
+  max-width: 30vw;
 }
 
 .bahisler{
@@ -527,6 +531,7 @@ th, td {
     overflow: auto; 
     padding-top: 4rem;
     padding-left: 10vw;
+    margin-bottom: 10vh;
     table
     {
       width: 100%;
@@ -613,177 +618,171 @@ th, td {
     width: 85%;
     margin-bottom: 7%;
   }
-
-}
-
-
-
-#kupon-form 
-{
 }
 
 /*----------buradan asagisi kupon html-----------------------*/
 /*---------------------------------*/
 
 #kupon-form {
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    left: 80vw;
-    bottom: -67vh;
-    overflow: inherit;
-    transition: bottom 1.5s ease;
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  left: 80vw;
+  bottom: -70vh;
+  overflow: inherit;
+  transition: bottom 1.5s ease;
     
 }
 
 #kupon-toggle {
-    color: white;
-    background-color: red;
-    border: none;
-    width: 15vw;
-    height: 3vw;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0; 
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0; 
-    padding: 0; 
+  color: white;
+  background-color: red;
+  border: none;
+  width: 15vw;
+  height: 3vw;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0; 
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0; 
+  padding: 0; 
 }
 
 .kupon {
-    border-top-right-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   /* background-color: #132e5c;*/
-   background-color: #152e5a;
-    width: 15vw;
-    min-height: min-content;
-    color: #333;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    font-family: Arial, sans-serif;
-}
+  border-top-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #132e5c;*/
+  background-color: #152e5a;
+  width: 15vw;
+  height: 67vh;
+  color: #333;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  font-family: Arial, sans-serif;
 
-.kupon-cerceve {
-    border: 2px solid #eee;
-    border-top-right-radius: 20px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 10px;
-    background-color: white;
-}
-
-#kupon_maclar {
-    flex: 1;
-    overflow-y: auto;
-    background-color: rgb(191, 233, 249);
-    color: #333;
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    margin-bottom: 10px;
-    
-}
-
-#kupon-form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-
-label, input, button, h3 {
-    margin: 5px 0;
-    width: 100%;
-    text-align: center;
-}
-
-input {
+  input 
+  {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 90%;
+  }
+  label, input, button, h3 
+  {
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+  }
 }
 
+.kupon-cerceve {
+  border: 2px solid #eee;
+  border-top-right-radius: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 10px;
+  background-color: white;
+}
 
+.kupon_maclar {
+  flex: 1;
+  overflow-y: scroll;
+  background-color: rgb(191, 233, 249);
+  color: #333;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  select, option
+  {
+    font-size: large;
+    text-align: center;
+  }
+}
+
+#kupon-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 .flex-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 #kupon-onay {
-    all: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 0.3em 1em; 
-    border: mediumspringgreen solid 0.075em;
-    border-radius: 0.125em;
-    color: mediumspringgreen;
-    font-size: 0.75em;
-    font-weight: 600;
-    cursor: pointer;
-    overflow: hidden;
-    transition: border 300ms, color 300ms;
-    user-select: none;
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.3em 1em; 
+  border: mediumspringgreen solid 0.075em;
+  border-radius: 0.125em;
+  color: mediumspringgreen;
+  font-size: 0.75em;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
 }
 
 #kupon-onay p {
-    z-index: 1;
+  z-index: 1;
 }
 
 #kupon-onay:hover {
-    color: #212121;
+  color: #212121;
 }
 
 #kupon-onay:active {
-    border-color: teal;
+  border-color: teal;
 }
 
 #kupon-onay::after, #kupon-onay::before {
-    content: "";
-    position: absolute;
-    width: 9em;
-    aspect-ratio: 1;
-    background: rgb(1, 147, 91);
-    opacity: 50%;
-    border-radius: 50%;
-    transition: transform 500ms, rgb(1, 147, 91) 500ms;
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background: rgb(1, 147, 91);
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, rgb(1, 147, 91) 500ms;
 }
 
 #kupon-onay::before {
-    left: 0;
-    transform: translateX(-8em);
+  left: 0;
+  transform: translateX(-8em);
 }
 
 #kupon-onay::after {
-    right: 0;
-    transform: translateX(8em);
+  right: 0;
+  transform: translateX(8em);
 }
 
 #kupon-onay:hover::before {
-    transform: translateX(-1em);
+  transform: translateX(-1em);
 }
 
 #kupon-onay:hover::after {
-    transform: translateX(1em);
+  transform: translateX(1em);
 }
 
 #kupon-onay:active::before,
 #kupon-onay:active::after {
-    background-color: teal;
+  background-color: teal;
 }
 
 

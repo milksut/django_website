@@ -289,7 +289,7 @@ def KuponCall(request: HttpRequest):
                 Kupon.objects.create(oran=oran, yatirialan=tutar ,kazanc=kazanc, kupon_sayisi=amount, Kullanici=request.user, Match=maclar_json)
                 request.user.balance -= tutar
                 request.user.save()
-                return redirect('koclar')
+                return redirect('kuponCall')
 
             else:
                 messages.error(request, 'Bu kupon için yeterli bakiyen yok !')
