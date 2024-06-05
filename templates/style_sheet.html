@@ -620,94 +620,171 @@ th, td {
 
 #kupon-form 
 {
+}
+
+/*----------buradan asagisi kupon html-----------------------*/
+/*---------------------------------*/
+
+#kupon-form {
     display: block;
     position: fixed;
     z-index: 1000;
     left: 80vw;
-    bottom: -50vh;
-    overflow: auto;
+    bottom: -67vh;
+    overflow: inherit;
     transition: bottom 1.5s ease;
-    .kupon
-    {
-  
-      border-top-right-radius: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff;
-      width: 15vw;
-      height: 50vh;
-      
-      background-color: #1a1a1a;
-      color: #fff;
-      border: 1px solid #333;
-      form
-      {
-        width: 100%;
-      }
-      label 
-      {
-        position: relative;
-      }
-      input 
-      {
-        background-color: #333;
-        color: #fff;
-        width: 70%;
-        outline: 0;
-        border: 1px solid rgba(105, 105, 105, 0.397);
-        border-radius: 10px;
-      }
-      button
-      {
-        border: none;
-        outline: none;
-        padding: 5px;
-        border-radius: 3px;
-        color: #fff;
-        font-size: 16px;
-        transform: .3s ease;
-        background-color: #00bfff;
-      }
-      button:hover
-      {
-        background-color: #00bfff96;
-      }
-      button:disabled
-      {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    }
+    
 }
-#kupon-toggle
-   {
+
+#kupon-toggle {
     color: white;
     background-color: red;
-    border: black;
-    width: 8vw;
-    height: 2vw;
-   }
+    border: none;
+    width: 15vw;
+    height: 3vw;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0; 
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; 
+    padding: 0; 
+}
+
+.kupon {
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   /* background-color: #132e5c;*/
+   background-color: #152e5a;
+    width: 15vw;
+    min-height: min-content;
+    color: #333;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.kupon-cerceve {
+    border: 2px solid #eee;
+    border-top-right-radius: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+    background-color: white;
+}
+
+#kupon_maclar {
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgb(191, 233, 249);
+    color: #333;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    
+}
 
 #kupon-form form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.mac-info{
-    background-color: var(--main-gray);
-    color: var(--second-orange);
-}
-.mac-no{
-    width: 2.5rem;
-}
-.mac-isim{
-    width: 10rem;
-}
-.maclar{
-    background-color: var(--second-orange);
+    width: 100%;
 }
 
+
+label, input, button, h3 {
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+}
+
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#kupon-onay {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0.3em 1em; 
+    border: mediumspringgreen solid 0.075em;
+    border-radius: 0.125em;
+    color: mediumspringgreen;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
+}
+
+#kupon-onay p {
+    z-index: 1;
+}
+
+#kupon-onay:hover {
+    color: #212121;
+}
+
+#kupon-onay:active {
+    border-color: teal;
+}
+
+#kupon-onay::after, #kupon-onay::before {
+    content: "";
+    position: absolute;
+    width: 9em;
+    aspect-ratio: 1;
+    background: rgb(1, 147, 91);
+    opacity: 50%;
+    border-radius: 50%;
+    transition: transform 500ms, rgb(1, 147, 91) 500ms;
+}
+
+#kupon-onay::before {
+    left: 0;
+    transform: translateX(-8em);
+}
+
+#kupon-onay::after {
+    right: 0;
+    transform: translateX(8em);
+}
+
+#kupon-onay:hover::before {
+    transform: translateX(-1em);
+}
+
+#kupon-onay:hover::after {
+    transform: translateX(1em);
+}
+
+#kupon-onay:active::before,
+#kupon-onay:active::after {
+    background-color: teal;
+}
 
 
 /*-----------------------buradan asagisi sign up card ------------------------------*/
@@ -1296,6 +1373,62 @@ textarea:focus {
   margin: 1rem;
 }
 
+
+
+/* buradan sonrası admin.html sayfası style'i */
+/*--------------------------------------------*/
+#tum_maclar {
+            width: 75%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #tum_maclar h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .admin_form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .admin_form label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .admin_form input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .admin_form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin_form button:hover {
+            background-color: #218838;
+        }
+        
 
 </style>
 </head>
