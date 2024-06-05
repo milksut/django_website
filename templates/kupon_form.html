@@ -1,162 +1,179 @@
 
+<head>
+    <style>
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+      /*  background-color: #4CAF50; */
+        background-color: rgb(0, 53, 151);
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    button:hover {
+        background-color:  rgba(245, 73, 144, 0.5);
+    }
+    input {
+    padding: 5px;
+    border: 5px solid black; /* Çerçeve kalınlığı artırıldı */
+    border-radius: 10px; /* Köşeler yuvarlaklaştırıldı */
+    width:90%;
+}
+</style>
+</head>
+
+
 <div id="kupon-form">
-   {% if user.is_authenticated %}
-    <button id="kupon-toggle"
-        onclick="toggleKuponForm()">&#11165 Kuponum</button> 
-    <div class="kupon">  
-        <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
-        <div class="kupon-cerceve">
-
-            <div id="kupon_maclar" class="kupon_maclar"></div> <!--add for this pls, make a white bacground, gix the writnig-->
-            <label for="Oran">Oran:</label>
-            <h3 id="Oran">1</h3>
-        </div>    
-            {% csrf_token %}
-           
-            <label for="Sistem">Sistem:</label>
-            <div style="display: flex; justify-content: space-between; width: 30%;">
-                <button id="system-button-1" type="button" disabled onclick="toggleSistem(1)">1</button>
-                <button id="system-button-2" type="button" onclick="toggleSistem(2)">2</button>
-            </div>
-            <label for="Tutar">Tutar:</label> <br>
-            <input id="Tutar" type="number" step="0.1" name="Tutar" value="1.00" required> <br>
-            <label for="Sayi"><span style="color: rgb(0, 0, 44);"> Kupon Sayisi:</span></label> 
-            <input id="Sayi" type="number" name="Sayi" value="1" required>
-            <label for="Kazanc"><span style="color: rgb(0, 0, 44);"> Kazanacağınız Para:</span></label>
-            <h3 id="Kazanc" style="color: rgb(0, 0, 44);">Lütfen değer girin</h3>
-            <input id="send-oran" name="send-oran" type="hidden" value="">
-            <input id="send-kazanc" name="send-kazanc" type="hidden" value="">
-            <input id="send-dict" name="send-dict" type="hidden" value="">
-          <!-- <button onclick="myFunction()" id="kupon-onay" disabled>Kuponu Onayla!</button>--> 
-            <button onclick="myFunction()" id="kupon-onay"disabled><p>Onayla!</p></button>
-                
-              
-        </form>
-    </div>
-    {% endif %}
-</div>
-<script>
-    var systembutton1 = document.getElementById('system-button-1');
-    var systembutton2 = document.getElementById('system-button-2');
-    function toggleSistem(x)
-    {
-        if(x==1)
-        {
-            systembutton1.disabled = true;
-            systembutton2.disabled = false;
-        }
-        else if(x==2)
-        {
-            systembutton2.disabled = true;
-            systembutton1.disabled = false;
-        }
-    }
-    function toggleKuponForm()
-    {
-        var kuponForm = document.getElementById('kupon-form');
-        if(kuponForm.style.bottom== "-50vh")
-        {
-            kuponForm.style.bottom = "0vh";
-        }
-        else
-        {
-            kuponForm.style.bottom ="-50vh";
-        }  
-    }
-
-   
-
-    var oran = 1.00 ;
-    var oranOutput = document.getElementById('Oran');
-    var oynanan_maclar={}
-    function updateOran(value, mac_id, team, user_balance, mac_name)
-    {
-        value = value.replace(',','.').trim();
-        if(mac_id in oynanan_maclar)
-        {
-            if(oynanan_maclar[mac_id][0] == team)
-            {
-                oran/=oynanan_maclar[mac_id][1];
-                delete oynanan_maclar[mac_id];
-            }
-            else
-            {
-                oran/=oynanan_maclar[mac_id][1];
-                oran*=value;
-                oynanan_maclar[mac_id][0] = team;
-                oynanan_maclar[mac_id][1] = value;
-            }
-        }
-        else
-        {
-            oran*=value;
-            oynanan_maclar[mac_id] = [team, value, mac_name];
-        }
-        oran = oran.toFixed(2);
-        var kupon_maclar = document.getElementById('kupon_maclar');
-        kupon_maclar.textContent="";
-        for (var mac_id in oynanan_maclar)
-        {
-            if (oynanan_maclar.hasOwnProperty(mac_id))
-            {
-                var values = oynanan_maclar[mac_id]
-                kupon_maclar.textContent += "\n ⚽️" + values[2] + " Oynan takım:" + values[0] + " Oran:" + values[1] 
-            }
-        }
-        oranOutput.textContent = oran.toString();
-        updateKazanc(parseFloat(user_balance));
-    }
-    var tutarInput = document.getElementById('Tutar');
-    var sayiInput = document.getElementById('Sayi');
-    var kazancOutput = document.getElementById('Kazanc');
-    var button = document.getElementById('kupon-onay');
-    function updateKazanc(user_balance)
-    {
-        var tutar = parseFloat(tutarInput.value)
-        var sayi = parseInt(sayiInput.value)
-        var kazanc = (tutar * sayi * oran).toFixed(2);
-        if(tutar<=0)
-        {
-            kazancOutput.textContent = "Tutar 0'dan büyük olmalı! ";
-            button.disabled=true;
-        }
-        else if(sayi<=0)
-        {
-            kazancOutput.textContent = "Sayi 0'dan büyük olmalı! ";
-            button.disabled=true;
-        }
-        else if(oran==1)
-        {
-            kazancOutput.textContent = "Oran 1'den büyük olmalı! ";
-            button.disabled=true;
-        }
-        else
-        {
-            kazancOutput.textContent = kazanc;
-            if(user_balance<tutar)
-            {
-                button.disabled = true;
-                kazancOutput.textContent = "Yeterli Bakiyen yok!";
-            }
-            else
-            {
-                button.disabled=false;
-
-            }
-        }
-    }
-    tutarInput.addEventListener('input', updateKazanc);
-    sayiInput.addEventListener('input', updateKazanc);
-    var send_oran = document.getElementById('send-oran');
-    var send_kazanc = document.getElementById('send-kazanc');
-    var send_dict = document.getElementById('send-dict');
-    function myFunction()
-    {
-        event.preventDefault();
-        send_oran.value = oran;
-        send_kazanc.value = (parseFloat(tutarInput.value) * parseInt(sayiInput.value) * oran).toFixed(2);
-        const jsonData = JSON.stringify(oynanan_maclar);
-        send_dict.value = jsonData;
-        document.getElementById("kupon-form-form").submit();
-    }
-</script>
+    {% if user.is_authenticated %}
+     <button id="kupon-toggle" onclick="toggleKuponForm()">&#11165; Kuponum</button>
+     <div class="kupon">
+         <form id="kupon-form-form" action="{% url 'kuponCall' %}" method="post">
+             <div class="kupon-cerceve">
+                 <div id="kupon_maclar" class="kupon_maclar"></div>
+                 <label for="Oran">Oran:</label>
+                 <h3 id="Oran">1</h3>
+             </div>
+             {% csrf_token %}
+             <label for="Sistem" style="color: aliceblue;">Sistem:</label>
+             <div class="flex-container">
+                 <button id="system-button-1" type="button" disabled onclick="toggleSistem(1)">1</button>
+                 <button id="system-button-2" type="button" onclick="toggleSistem(2)">2</button>
+             </div>
+             <label for="Tutar"><span style="color: aliceblue;">Tutar:</span></label> 
+             <input id="Tutar" type="number" step="0.1" name="Tutar" value="1.00" required>
+             <label for="Sayi"><span style="color: aliceblue;">Kupon Sayisi:</span></label>
+             <input id="Sayi" type="number" name="Sayi" value="1" required>
+             <label for="Kazanc"><span style="color: aliceblue;">Kazanacağınız Para:</span></label>
+             <h3 id="Kazanc" style="color: aliceblue;">Lütfen değer girin</h3>
+             <input id="send-oran" name="send-oran" type="hidden" value="">
+             <input id="send-kazanc" name="send-kazanc" type="hidden" value="">
+             <input id="send-dict" name="send-dict" type="hidden" value="">
+             <button onclick="myFunction()" id="kupon-onay" disabled><p>Onayla!</p></button>
+         </form>
+     </div>
+     {% endif %}
+ </div>
+ <script>
+     var systembutton1 = document.getElementById('system-button-1');
+     var systembutton2 = document.getElementById('system-button-2');
+     function toggleSistem(x)
+     {
+         if(x==1)
+         {
+             systembutton1.disabled = true;
+             systembutton2.disabled = false;
+         }
+         else if(x==2)
+         {
+             systembutton2.disabled = true;
+             systembutton1.disabled = false;
+         }
+     }
+     function toggleKuponForm()
+     {
+         var kuponForm = document.getElementById('kupon-form');
+         if(kuponForm.style.bottom == "-67vh")
+         {
+             kuponForm.style.bottom = "0vh";
+         }
+         else
+         {
+             kuponForm.style.bottom = "-67vh";
+         }
+     }
+     var oran = 1.00;
+     var oranOutput = document.getElementById('Oran');
+     var oynanan_maclar = {};
+     function updateOran(value, mac_id, team, user_balance, mac_name)
+     {
+         value = value.replace(',', '.').trim();
+         if(mac_id in oynanan_maclar)
+         {
+             if(oynanan_maclar[mac_id][0] == team)
+             {
+                 oran /= oynanan_maclar[mac_id][1];
+                 delete oynanan_maclar[mac_id];
+             }
+             else
+             {
+                 oran /= oynanan_maclar[mac_id][1];
+                 oran *= value;
+                 oynanan_maclar[mac_id][0] = team;
+                 oynanan_maclar[mac_id][1] = value;
+             }
+         }
+         else
+         {
+             oran *= value;
+             oynanan_maclar[mac_id] = [team, value, mac_name];
+         }
+         oran = oran.toFixed(2);
+         var kupon_maclar = document.getElementById('kupon_maclar');
+         kupon_maclar.textContent = "";
+         for (var mac_id in oynanan_maclar)
+         {
+             if (oynanan_maclar.hasOwnProperty(mac_id))
+             {
+                 var values = oynanan_maclar[mac_id];
+                 kupon_maclar.textContent += "\n ⚽️" + values[2] + " Oynan takım: " + values[0] + " Oran: " + values[1];
+             }
+         }
+         oranOutput.textContent = oran.toString();
+         updateKazanc(parseFloat(user_balance));
+     }
+     var tutarInput = document.getElementById('Tutar');
+     var sayiInput = document.getElementById('Sayi');
+     var kazancOutput = document.getElementById('Kazanc');
+     var button = document.getElementById('kupon-onay');
+     function updateKazanc(user_balance)
+     {
+         var tutar = parseFloat(tutarInput.value);
+         var sayi = parseInt(sayiInput.value);
+         var kazanc = (tutar * sayi * oran).toFixed(2);
+         if(tutar <= 0)
+         {
+             kazancOutput.textContent = "Tutar 0'dan büyük olmalı!";
+             button.disabled = true;
+         }
+         else if(sayi <= 0)
+         {
+             kazancOutput.textContent = "Sayi 0'dan büyük olmalı!";
+             button.disabled = true;
+         }
+         else if(oran == 1)
+         {
+             kazancOutput.textContent = "Oran 1'den büyük olmalı!";
+             button.disabled = true;
+         }
+         else
+         {
+             kazancOutput.textContent = kazanc;
+             if(user_balance < tutar)
+             {
+                 button.disabled = true;
+                 kazancOutput.textContent = "Yeterli Bakiyen yok!";
+             }
+             else
+             {
+                 button.disabled = false;
+             }
+         }
+     }
+     tutarInput.addEventListener('input', updateKazanc);
+     sayiInput.addEventListener('input', updateKazanc);
+     var send_oran = document.getElementById('send-oran');
+     var send_kazanc = document.getElementById('send-kazanc');
+     var send_dict = document.getElementById('send-dict');
+     function myFunction()
+     {
+         event.preventDefault();
+         send_oran.value = oran;
+         send_kazanc.value = (parseFloat(tutarInput.value) * parseInt(sayiInput.value) * oran).toFixed(2);
+         const jsonData = JSON.stringify(oynanan_maclar);
+         send_dict.value = jsonData;
+         document.getElementById("kupon-form-form").submit();
+     }
+ </script>
+ 
