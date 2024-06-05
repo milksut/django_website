@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.utils.translation import gettext_lazy as tercuman
-import csv, io
+import csv, io, json
 from django.contrib.auth.decorators import  permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from new_page.models import Coach, Match, Kupon, Post
@@ -289,7 +289,7 @@ def KuponCall(request: HttpRequest):
                 Kupon.objects.create(oran=oran, yatirialan=tutar ,kazanc=kazanc, kupon_sayisi=amount, Kullanici=request.user, Match=maclar_json)
                 request.user.balance -= tutar
                 request.user.save()
-                return redirect('koclar')
+                return redirect('kuponCall')
 
             else:
                 messages.error(request, 'Bu kupon için yeterli bakiyen yok !')
@@ -297,6 +297,19 @@ def KuponCall(request: HttpRequest):
         else:
             messages.error(request, 'Giriş yapmadan kupon oynayamassın!')
             return redirect('homepage')
+
+    elif request.method == "GET":
+        if request.user.is_authenticated:
+            kuponlar = Kupon.objects.filter(Kullanici=request.user)
+            oynanan_maclar={}
+            for kupon in kuponlar:
+                oynanan_maclar[kupon.id] = json.loads(kupon.Match) 
+            return render(request, 'kuponlarım_page.html', {'kuponlar':kuponlar, 'oynanan_maclar':oynanan_maclar})
+
+        else:
+            messages.error(request, 'Giriş yapmadan kuponları görüntüleyemessin!')
+            return redirect('homepage')
+
     else:
         messages.error(request, 'Geçersiz Method')
         return redirect('homepage')

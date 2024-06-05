@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "header.html" %}
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>DecoyBet</title>
+</head>
+
+<body>
+    {% for kupon in kuponlar%}
+    <ul class="kuponlarim-list">
+        <li class="kuponlarim-li">Oran: {{ kupon.oran }}</li>
+        <li class="kuponlarim-li">Yatırılan: {{ kupon.yatirialan }}</li>
+        <li class="kuponlarim-li">Kazanç: {{ kupon.kazanc }}</li>
+        <li class="kuponlarim-li">Kupon Sayısı: {{ kupon.kupon_sayisi }}</li>
+        <li class="kuponlarim-li">
+            <ul class="kuponlarim-ul">
+                {% for kupon_id, value in oynanan_maclar.items %}
+                    {% if kupon_id == kupon.id %}
+                        {% for match_id, info in value.items %}
+                            <li class="kuponlarim-li">⚽️ {{ info.2 }} Oynanan takım: {{ info.0 }} Oran: {{ info.1 }}</li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    {% endfor %}
+</body>
+{% endblock content %}
+</html>

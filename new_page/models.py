@@ -13,7 +13,7 @@ class Kupon(models.Model):
     yatirialan = models.FloatField(default=1, null=False)
     kazanc = models.FloatField(default=1, null=False)
     kupon_sayisi = models.PositiveIntegerField(default=1, null=False)
-    Match = models.JSONField(default=dict)
+    Match = models.JSONField(default=dict) # oynanan_maclar[mac_id] = [team, value, mac_name]
     Kullanici = models.ForeignKey(Kullanici, on_delete=models.CASCADE)
 
 class Match(models.Model):

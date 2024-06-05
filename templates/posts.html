@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="posts-html">
-        <div class="search-bar"><!--plase make css for this! -->
+        <div class="search-bar">
             <select class="post-select" name="match_tag_select" id="match_tag_select">
                 {% for mac in match_tags %}
                 <option value="{{mac.id}}">{{mac.team1}} vs {{mac.team2}}</option>
@@ -18,7 +18,7 @@
             </select>
             <button class="post-search-btn" onclick="filter_posts('{{coach}}')" >&#128269</button>
             </div>
-            <ul><!--plase make css for this! -->
+            <ul>
             {% for post in posts %}
                 <li class="post-li-item">
                     <h3>Yazar: {{post.Coach.Kullanici.first_name}} {{post.Coach.Kullanici.last_name}}</h3>

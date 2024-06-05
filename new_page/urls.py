@@ -14,7 +14,7 @@ urlpatterns = [
     path('contact', contact_upload, name='contact'),
     path('post', CoachCall, name='coachCall'),
     path('logout', LogoutCall, name='logoutCall'),
-    path('kuponUpdate', KuponCall, name='kuponCall'),
+    path('kuponlar', KuponCall, name='kuponCall'),
     path('list_posts', PostCall, name='postCall'),
     path('reset_password', ResetPasswordCall, name='resetPasswordCall'),
     ]

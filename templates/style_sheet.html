@@ -331,6 +331,7 @@ font-family:Arial, Helvetica, sans-serif;
 font-size: 25px;
 text-decoration-line: underline;
 text-decoration-color: rgb(225, 111, 130);
+text-align: center;
 width: 100%;
 float: left;
 
@@ -380,6 +381,7 @@ float: left;
     box-shadow: 0px 5px 3px 3px  rgb(76, 76, 108);
     border-radius: 7px;
     min-width: 50vw;
+    margin-bottom: 5vh;
 
 th, td {
         border: 1px solid black;
@@ -496,6 +498,7 @@ th, td {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 .bahisler-search-bar button{
   margin-left: 1rem;
@@ -515,7 +518,8 @@ th, td {
   border-radius: 8px;
   font-size: 1rem;
   border: none;
-  text-align: center;
+  text-align: center; 
+  max-width: 30vw;
 }
 
 .bahisler{
@@ -527,6 +531,7 @@ th, td {
     overflow: auto; 
     padding-top: 4rem;
     padding-left: 10vw;
+    margin-bottom: 10vh;
     table
     {
       width: 100%;
@@ -579,99 +584,206 @@ th, td {
     height: 100%;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0,0.5);
     overflow: auto;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif
+
 }
-#kupon-form 
-{
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    left: 80vw;
-    bottom: -50vh;
-    overflow: auto;
-    transition: bottom 1.5s ease;
-    .kupon
-    {
-  
-      border-top-right-radius: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff;
-      width: 15vw;
-      height: 50vh;
-      
-      background-color: #1a1a1a;
-      color: #fff;
-      border: 1px solid #333;
-      form
-      {
-        width: 100%;
-      }
-      label 
-      {
-        position: relative;
-      }
-      input 
-      {
-        background-color: #333;
-        color: #fff;
-        width: 70%;
-        outline: 0;
-        border: 1px solid rgba(105, 105, 105, 0.397);
-        border-radius: 10px;
-      }
-      button
-      {
-        border: none;
-        outline: none;
-        padding: 5px;
-        border-radius: 3px;
-        color: #fff;
-        font-size: 16px;
-        transform: .3s ease;
-        background-color: #00bfff;
-      }
-      button:hover
-      {
-        background-color: #00bfff96;
-      }
-      button:disabled
-      {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    }
-}
-#kupon-toggle
-   {
+
+#reset-password-form-form{
+  width: 30%;
+  padding: 2%;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(245,73,144);
+  border-radius: 10px;
+  label
+  {
     color: white;
-    background-color: red;
-    border: black;
-    width: 8vw;
-    height: 2vw;
-   }
+    margin-bottom: 1%;
+  }
+  input
+  {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    background-color: #333;
+    color: #fff;
+    outline: none;
+    font-size: medium;
+    box-sizing: border-box;
+    width: 85%;
+    margin-bottom: 7%;
+  }
+}
+
+/*----------buradan asagisi kupon html-----------------------*/
+/*---------------------------------*/
+
+#kupon-form {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  left: 80vw;
+  bottom: -70vh;
+  overflow: inherit;
+  transition: bottom 1.5s ease;
+    
+}
+
+#kupon-toggle {
+  color: white;
+  background-color: red;
+  border: none;
+  width: 15vw;
+  height: 3vw;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0; 
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0; 
+  padding: 0; 
+}
+
+.kupon {
+  border-top-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #132e5c;*/
+  background-color: #152e5a;
+  width: 15vw;
+  height: 67vh;
+  color: #333;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  font-family: Arial, sans-serif;
+
+  input 
+  {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+  }
+  label, input, button, h3 
+  {
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.kupon-cerceve {
+  border: 2px solid #eee;
+  border-top-right-radius: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 10px;
+  background-color: white;
+}
+
+.kupon_maclar {
+  flex: 1;
+  overflow-y: scroll;
+  background-color: rgb(191, 233, 249);
+  color: #333;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  select, option
+  {
+    font-size: large;
+    text-align: center;
+  }
+}
 
 #kupon-form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.mac-info{
-    background-color: var(--main-gray);
-    color: var(--second-orange);
-}
-.mac-no{
-    width: 2.5rem;
-}
-.mac-isim{
-    width: 10rem;
-}
-.maclar{
-    background-color: var(--second-orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#kupon-onay {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.3em 1em; 
+  border: mediumspringgreen solid 0.075em;
+  border-radius: 0.125em;
+  color: mediumspringgreen;
+  font-size: 0.75em;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+#kupon-onay p {
+  z-index: 1;
+}
+
+#kupon-onay:hover {
+  color: #212121;
+}
+
+#kupon-onay:active {
+  border-color: teal;
+}
+
+#kupon-onay::after, #kupon-onay::before {
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background: rgb(1, 147, 91);
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, rgb(1, 147, 91) 500ms;
+}
+
+#kupon-onay::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+#kupon-onay::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+#kupon-onay:hover::before {
+  transform: translateX(-1em);
+}
+
+#kupon-onay:hover::after {
+  transform: translateX(1em);
+}
+
+#kupon-onay:active::before,
+#kupon-onay:active::after {
+  background-color: teal;
+}
 
 
 /*-----------------------buradan asagisi sign up card ------------------------------*/
@@ -1173,6 +1285,11 @@ textarea:focus {
   color: black;
 }
 
+
+
+
+
+
 /*posts lar için css*/
 /****************************************************/
 
@@ -1215,6 +1332,102 @@ textarea:focus {
 .post-li-item h3{
   color: #0056b3;
 }
+
+/*kuponlarım*/
+.kuponlarim-list, .kuponlarim-ul {
+  list-style: none;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin-right: 3rem;
+  font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.kuponlarim-li {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+  border-bottom: 1px solid #0057b378;
+  padding-left: 8%;
+}
+.kuponlarim-list li:last-child {
+  border: none;
+}
+
+.kuponlarim-li ul li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.kuponlarim-list {
+  box-shadow: #007bff9f 5px 4px 5px;
+  border-radius: 2rem;
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+}
+
+.kuponlarim-ul {
+  margin: 1rem;
+}
+
+
+
+/* buradan sonrası admin.html sayfası style'i */
+/*--------------------------------------------*/
+#tum_maclar {
+            width: 75%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #tum_maclar h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .admin_form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .admin_form label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .admin_form input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .admin_form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin_form button:hover {
+            background-color: #218838;
+        }
+        
 
 </style>
 </head>
